@@ -65,6 +65,7 @@
     <Compile Include="GestionMat.Designer.cs">
       <DependentUpon>GestionMat.cs</DependentUpon>
     </Compile>
+    <Compile Include="Materiel.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="aPropos.resx">
