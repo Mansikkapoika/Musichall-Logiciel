@@ -32,6 +32,7 @@ namespace MusicHall
         }
 
         // Accesseurs à écrire
+        // ... Test Git plugin for Visual Studio 15 :)
 
     }
 }
