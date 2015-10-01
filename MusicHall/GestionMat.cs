@@ -27,7 +27,7 @@ namespace MusicHall
             t_description.Clear();
             t_marque.Clear();
             t_modele.Clear();
-            list_fournisseurs.ClearSelected();
+            list_fournisseurs.Items.Clear();    // A changer
         }
 
         private void BloquerChampsSaisie()
@@ -57,7 +57,7 @@ namespace MusicHall
             t_modele.Enabled = true;
             list_fournisseurs.Enabled = true;
             list_materiels.Enabled = false;
-            list_materiels.ClearSelected();
+            list_materiels.Items.Clear();       // A changer
         }
 
         public GestionMat()
@@ -65,7 +65,8 @@ namespace MusicHall
             InitializeComponent();
 
             // Chaine de connexion à la DB
-            ChaineConnexion = "server=btsinfo-rousseau53.fr;port=21017;username=2014-musichall;password=123456;database=2014-musichall_musichall";
+            // ! Mettre des infos fausses pour l'instant !
+            ChaineConnexion = "server=blabla_btsinfo-rousseau53.fr;port=21017;username=2014-musichall;password=123456;database=2014-musichall_musichall";
 
             // Blocage des champs de saisie par défaut
             BloquerChampsSaisie();
@@ -87,9 +88,17 @@ namespace MusicHall
 
                 while (MonReaderMateriel.Read())
                 {
-                    nouveauMateriel = new Materiel(int.Parse(MonReaderMateriel[0].ToString()), MonReaderMateriel[1].ToString, MonReaderMateriel[2].ToString, int.Parse(MonReaderMateriel[3].ToString()), int.Parse(MonReaderMateriel[4].ToString()), int.Parse(MonReaderMateriel[5].ToString()), int.Parse(MonReaderMateriel[6].ToString()), int.Parse(MonReaderMateriel[7].ToString()), int.Parse(MonReaderMateriel[8].ToString()), ;
+                    nouveauMateriel = new Materiel(int.Parse(MonReaderMateriel[0].ToString()), MonReaderMateriel[1].ToString(), MonReaderMateriel[2].ToString(), int.Parse(MonReaderMateriel[3].ToString()), int.Parse(MonReaderMateriel[4].ToString()), int.Parse(MonReaderMateriel[5].ToString()), int.Parse(MonReaderMateriel[6].ToString()), int.Parse(MonReaderMateriel[7].ToString()), int.Parse(MonReaderMateriel[8].ToString()));
+                    CollectionMateriel.Add(nouveauMateriel);
                 }
+                // Fermeture de la connexion
+                GestionMateriel.Close();
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erreur :" + ex.Message);
+            }
+
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -127,7 +136,22 @@ namespace MusicHall
 
         private void GestionMat_Load(object sender, EventArgs e)
         {
+            try
+            {
+                // Ouverture de la connexion
+                GestionMateriel = new MySqlConnection(ChaineConnexion);
 
+                // Création de la collection et chargement
+                CollectionMateriel = new Collection<Materiel>();
+                ChargementMateriel();
+
+                // Faire à ce que la collection aille ensuite dans le menu déroulant (du matériel) ?
+                // ...
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erreur :" + ex.Message);
+            }
         }
 
         private void label7_Click(object sender, EventArgs e)
@@ -137,14 +161,14 @@ namespace MusicHall
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
+
         }
 
         private void label4_Click(object sender, EventArgs e)
         {
 
         }
-        
+
         private void button7_Click(object sender, EventArgs e)
         {
             Close();
@@ -158,6 +182,36 @@ namespace MusicHall
             b_ajouterMateriel.Enabled = true;
             b_modifierMateriel.Enabled = true;
             b_supprimerMateriel.Enabled = true;
+        }
+
+        private void b_supprimerMateriel_Click(object sender, EventArgs e)
+        {
+            // Confirmation de la suppression
+            if (MessageBox.Show("Voulez vous supprimer le matériel ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                try
+                {
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Erreur :" + ex.Message);
+                }
+            }
+            else
+            {
+
+            }
+        }
+
+        private void t_ht_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void t_location_ValueChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
