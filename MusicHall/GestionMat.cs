@@ -1,4 +1,5 @@
-﻿using MySql.Data.MySqlClient;
+﻿using MusicHall.Modeles;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -14,9 +15,7 @@ namespace MusicHall
 {
     public partial class GestionMat : Form
     {
-        String ChaineConnexion;
         Collection<Materiel> CollectionMateriel;
-        MySqlConnection GestionMateriel;
 
         private void RemiseAZero()
         {
@@ -64,41 +63,8 @@ namespace MusicHall
         {
             InitializeComponent();
 
-            // Chaine de connexion à la DB
-            // ! Mettre des infos fausses pour l'instant !
-            ChaineConnexion = "server=blabla_btsinfo-rousseau53.fr;port=21017;username=2014-musichall;password=123456;database=2014-musichall_musichall";
-
             // Blocage des champs de saisie par défaut
             BloquerChampsSaisie();
-        }
-
-        private void ChargementMateriel()
-        {
-            try
-            {
-                CollectionMateriel.Clear();
-                GestionMateriel.Open();
-                String ReqSQL = "SELECT * FROM materiel";
-
-                MySqlDataReader MonReaderMateriel;
-                MySqlCommand Command1 = new MySqlCommand(ReqSQL, GestionMateriel);
-                MonReaderMateriel = Command1.ExecuteReader();
-
-                Materiel nouveauMateriel;
-
-                while (MonReaderMateriel.Read())
-                {
-                    nouveauMateriel = new Materiel(int.Parse(MonReaderMateriel[0].ToString()), MonReaderMateriel[1].ToString(), MonReaderMateriel[2].ToString(), int.Parse(MonReaderMateriel[3].ToString()), int.Parse(MonReaderMateriel[4].ToString()), int.Parse(MonReaderMateriel[5].ToString()), int.Parse(MonReaderMateriel[6].ToString()), int.Parse(MonReaderMateriel[7].ToString()), int.Parse(MonReaderMateriel[8].ToString()));
-                    CollectionMateriel.Add(nouveauMateriel);
-                }
-                // Fermeture de la connexion
-                GestionMateriel.Close();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Erreur :" + ex.Message);
-            }
-
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -139,11 +105,11 @@ namespace MusicHall
             try
             {
                 // Ouverture de la connexion
-                GestionMateriel = new MySqlConnection(ChaineConnexion);
+                M_Connexion.GestionMateriel = new MySqlConnection(M_Connexion.ChaineConnexion);
 
                 // Création de la collection et chargement
                 CollectionMateriel = new Collection<Materiel>();
-                ChargementMateriel();
+                M_Materiel.GetMateriel();
 
                 // Faire à ce que la collection aille ensuite dans le menu déroulant (du matériel) ?
                 // ...

@@ -66,6 +66,8 @@
       <DependentUpon>GestionMat.cs</DependentUpon>
     </Compile>
     <Compile Include="Materiel.cs" />
+    <Compile Include="Modeles\M_Materiel.cs" />
+    <Compile Include="Modeles\M_Connexion.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="aPropos.resx">
@@ -99,6 +101,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
