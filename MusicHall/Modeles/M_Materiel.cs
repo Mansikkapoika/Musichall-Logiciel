@@ -30,7 +30,7 @@ namespace MusicHall.Modeles
 
                 while (MonReaderMateriel.Read())
                 {
-                    nouveauMateriel = new Materiel(int.Parse(MonReaderMateriel[0].ToString()), MonReaderMateriel[1].ToString(), MonReaderMateriel[2].ToString(), int.Parse(MonReaderMateriel[3].ToString()), int.Parse(MonReaderMateriel[4].ToString()), int.Parse(MonReaderMateriel[5].ToString()), int.Parse(MonReaderMateriel[6].ToString()), int.Parse(MonReaderMateriel[7].ToString()), int.Parse(MonReaderMateriel[8].ToString()));
+                    nouveauMateriel = new Materiel(int.Parse(MonReaderMateriel[0].ToString()), MonReaderMateriel[1].ToString(), MonReaderMateriel[2].ToString(), int.Parse(MonReaderMateriel[3].ToString()), int.Parse(MonReaderMateriel[4].ToString()), int.Parse(MonReaderMateriel[5].ToString()), MonReaderMateriel[6].ToString(), MonReaderMateriel[7].ToString(), MonReaderMateriel[8].ToString());
                     CollectionMateriel.Add(nouveauMateriel);
                 }
                 // Fermeture de la connexion

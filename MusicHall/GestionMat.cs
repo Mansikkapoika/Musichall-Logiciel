@@ -62,9 +62,6 @@ namespace MusicHall
         public GestionMat()
         {
             InitializeComponent();
-
-            // Blocage des champs de saisie par défaut
-            BloquerChampsSaisie();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -104,15 +101,10 @@ namespace MusicHall
         {
             try
             {
-                // Ouverture de la connexion
-                M_Connexion.GestionMateriel = new MySqlConnection(M_Connexion.ChaineConnexion);
+                CollectionMateriel = Modeles.M_Materiel.GetMateriel();
 
-                // Création de la collection et chargement
-                CollectionMateriel = new Collection<Materiel>();
-                M_Materiel.GetMateriel();
-
-                // Faire à ce que la collection aille ensuite dans le menu déroulant (du matériel) ?
-                // ...
+                // Blocage des champs de saisie par défaut
+                BloquerChampsSaisie();
             }
             catch (Exception ex)
             {
@@ -176,6 +168,11 @@ namespace MusicHall
         }
 
         private void t_location_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void list_materiels_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }

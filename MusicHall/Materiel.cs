@@ -14,11 +14,11 @@ namespace MusicHall
         private int prixAchHT;
         private int prixLoca;
         private int idSousCategorie;
-        private int idMarque;
-        private int idModele;
-        private int idFournisseur;
+        private String Marque;
+        private String Modele;
+        private String Fournisseur;
 
-        public Materiel(int idMateriel, String libelle, String description, int prixAchHT, int prixLoca, int idSousCategorie, int idMarque, int idModele, int idFournisseur)
+        public Materiel(int idMateriel, String libelle, String description, int prixAchHT, int prixLoca, int idSousCategorie, String Marque, String Modele, String Fournisseur)
         {
             this.idMateriel = idMateriel;
             this.libelle = libelle;
@@ -26,13 +26,13 @@ namespace MusicHall
             this.prixAchHT = prixAchHT;
             this.prixLoca = prixLoca;
             this.idSousCategorie = idSousCategorie;
-            this.idMarque = idMarque;
-            this.idModele = idModele;
-            this.idFournisseur = idFournisseur;
+            this.Marque = Marque;
+            this.Modele = Modele;
+            this.Fournisseur = Fournisseur;
         }
 
         // Accesseurs à écrire
-        // ... Test Git plugin for Visual Studio 15 :)
+
 
     }
 }
