@@ -16,6 +16,7 @@ namespace MusicHall
     public partial class GestionMat : Form
     {
         Collection<Materiel> CollectionMateriel;
+        int NumMaterielCourant = 1;
 
         private void RemiseAZero()
         {
@@ -26,7 +27,7 @@ namespace MusicHall
             t_description.Clear();
             t_marque.Clear();
             t_modele.Clear();
-            list_fournisseurs.Items.Clear();    // A changer
+            t_fournisseur.Clear();
         }
 
         private void BloquerChampsSaisie()
@@ -38,11 +39,12 @@ namespace MusicHall
             t_description.Enabled = false;
             t_marque.Enabled = false;
             t_modele.Enabled = false;
-            list_fournisseurs.Enabled = false;
+            t_fournisseur.Enabled = false;
             b_validerAjout.Enabled = false;
             b_validerModification.Enabled = false;
             b_annuler.Enabled = false;
-            list_materiels.Enabled = true;
+            // On empeche l'utilisateur d'écrire dans le combobox
+            list_materiels.DropDownStyle = ComboBoxStyle.DropDownList;
         }
 
         private void DebloquerChampsSaisie()
@@ -54,9 +56,7 @@ namespace MusicHall
             t_description.Enabled = true;
             t_marque.Enabled = true;
             t_modele.Enabled = true;
-            list_fournisseurs.Enabled = true;
-            list_materiels.Enabled = false;
-            list_materiels.Items.Clear();       // A changer
+            t_fournisseur.Enabled = true;
         }
 
         public GestionMat()
@@ -101,10 +101,14 @@ namespace MusicHall
         {
             try
             {
+                // ON rempli la collection
                 CollectionMateriel = Modeles.M_Materiel.GetMateriel();
 
                 // Blocage des champs de saisie par défaut
                 BloquerChampsSaisie();
+
+                // Ajout des infos au combobox
+                RemplirComboMateriel(CollectionMateriel[NumMaterielCourant - 1]);
             }
             catch (Exception ex)
             {
@@ -112,12 +116,31 @@ namespace MusicHall
             }
         }
 
-        private void label7_Click(object sender, EventArgs e)
+        private void RemplirComboMateriel(Materiel unMateriel)
         {
+            // On rempli le menu déroulant de produits
+            foreach (Materiel leMateriel in CollectionMateriel)
+            {
+                list_materiels.Items.Add(leMateriel.getLibelle());
+            }
+        }
+
+        private void AffecterValeurs(Materiel unMateriel)
+        {
+            // On affecte les valeurs aux champs en fonction du clique dans le menu déroulant de produits
+            Materiel leMateriel = unMateriel;
+            t_nom.Text = leMateriel.getLibelle();
+            t_ht.Value = leMateriel.getPrixAch();
+            t_location.Value = leMateriel.getPrixLoca();
+            t_description.Text = leMateriel.getDescription();
+            t_marque.Text = leMateriel.getMarque();
+            t_modele.Text = leMateriel.getModele();
+            t_fournisseur.Text = leMateriel.getFournisseur();
+            
 
         }
 
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        private void label7_Click(object sender, EventArgs e)
         {
 
         }
@@ -172,7 +195,22 @@ namespace MusicHall
 
         }
 
+        private void t_nom_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
         private void list_materiels_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            AffecterValeurs(CollectionMateriel[list_materiels.SelectedIndex]);
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lab_fournisseur_Click(object sender, EventArgs e)
         {
 
         }

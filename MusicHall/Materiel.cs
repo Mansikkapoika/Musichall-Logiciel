@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MusicHall
 {
-    class Materiel
+    public class Materiel
     {
         private int idMateriel;
         private String libelle;
@@ -33,6 +33,45 @@ namespace MusicHall
 
         // Accesseurs à écrire
 
+        public int getId()
+        {
+            return this.idMateriel;
+        }
+
+        public String getLibelle()
+        {
+            return this.libelle;
+        }
+
+        public String getDescription()
+        {
+            return this.description;
+        }
+
+        public int getPrixAch()
+        {
+            return this.prixAchHT;
+        }
+
+        public int getPrixLoca()
+        {
+            return this.prixLoca;
+        }
+
+        public String getMarque()
+        {
+            return this.Marque;
+        }
+
+        public String getModele()
+        {
+            return this.Modele;
+        }
+
+        public String getFournisseur()
+        {
+            return this.Fournisseur;
+        }
 
     }
 }

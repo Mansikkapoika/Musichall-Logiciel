@@ -44,7 +44,6 @@
             this.lab_modele = new System.Windows.Forms.Label();
             this.t_marque = new System.Windows.Forms.TextBox();
             this.lab_marque = new System.Windows.Forms.Label();
-            this.t_modele = new System.Windows.Forms.TextBox();
             this.lab_fournisseur = new System.Windows.Forms.Label();
             this.pic_materiel = new System.Windows.Forms.PictureBox();
             this.t_ht = new System.Windows.Forms.NumericUpDown();
@@ -52,7 +51,8 @@
             this.b_quitter = new System.Windows.Forms.Button();
             this.list_materiels = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.list_fournisseurs = new System.Windows.Forms.ComboBox();
+            this.t_modele = new System.Windows.Forms.TextBox();
+            this.t_fournisseur = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pic_materiel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.t_ht)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.t_location)).BeginInit();
@@ -139,6 +139,7 @@
             this.t_nom.Name = "t_nom";
             this.t_nom.Size = new System.Drawing.Size(213, 20);
             this.t_nom.TabIndex = 8;
+            this.t_nom.TextChanged += new System.EventHandler(this.t_nom_TextChanged);
             // 
             // lab_description
             // 
@@ -187,7 +188,7 @@
             // 
             // t_marque
             // 
-            this.t_marque.Location = new System.Drawing.Point(98, 323);
+            this.t_marque.Location = new System.Drawing.Point(99, 323);
             this.t_marque.Name = "t_marque";
             this.t_marque.Size = new System.Drawing.Size(213, 20);
             this.t_marque.TabIndex = 16;
@@ -202,21 +203,15 @@
             this.lab_marque.Text = "Marque";
             this.lab_marque.Click += new System.EventHandler(this.label7_Click);
             // 
-            // t_modele
-            // 
-            this.t_modele.Location = new System.Drawing.Point(97, 358);
-            this.t_modele.Name = "t_modele";
-            this.t_modele.Size = new System.Drawing.Size(214, 20);
-            this.t_modele.TabIndex = 18;
-            // 
             // lab_fournisseur
             // 
             this.lab_fournisseur.AutoSize = true;
-            this.lab_fournisseur.Location = new System.Drawing.Point(32, 395);
+            this.lab_fournisseur.Location = new System.Drawing.Point(27, 390);
             this.lab_fournisseur.Name = "lab_fournisseur";
             this.lab_fournisseur.Size = new System.Drawing.Size(61, 13);
             this.lab_fournisseur.TabIndex = 19;
             this.lab_fournisseur.Text = "Fournisseur";
+            this.lab_fournisseur.Click += new System.EventHandler(this.lab_fournisseur_Click);
             // 
             // pic_materiel
             // 
@@ -285,20 +280,27 @@
             this.label2.TabIndex = 27;
             this.label2.Text = "Selectionner matériel";
             // 
-            // list_fournisseurs
+            // t_modele
             // 
-            this.list_fournisseurs.FormattingEnabled = true;
-            this.list_fournisseurs.Location = new System.Drawing.Point(97, 392);
-            this.list_fournisseurs.Name = "list_fournisseurs";
-            this.list_fournisseurs.Size = new System.Drawing.Size(214, 21);
-            this.list_fournisseurs.TabIndex = 28;
+            this.t_modele.Location = new System.Drawing.Point(99, 355);
+            this.t_modele.Name = "t_modele";
+            this.t_modele.Size = new System.Drawing.Size(213, 20);
+            this.t_modele.TabIndex = 28;
+            // 
+            // t_fournisseur
+            // 
+            this.t_fournisseur.Location = new System.Drawing.Point(99, 387);
+            this.t_fournisseur.Name = "t_fournisseur";
+            this.t_fournisseur.Size = new System.Drawing.Size(213, 20);
+            this.t_fournisseur.TabIndex = 29;
             // 
             // GestionMat
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(957, 602);
-            this.Controls.Add(this.list_fournisseurs);
+            this.Controls.Add(this.t_fournisseur);
+            this.Controls.Add(this.t_modele);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.list_materiels);
             this.Controls.Add(this.b_quitter);
@@ -306,7 +308,6 @@
             this.Controls.Add(this.t_ht);
             this.Controls.Add(this.pic_materiel);
             this.Controls.Add(this.lab_fournisseur);
-            this.Controls.Add(this.t_modele);
             this.Controls.Add(this.lab_modele);
             this.Controls.Add(this.t_marque);
             this.Controls.Add(this.lab_marque);
@@ -353,7 +354,6 @@
         private System.Windows.Forms.Label lab_modele;
         private System.Windows.Forms.TextBox t_marque;
         private System.Windows.Forms.Label lab_marque;
-        private System.Windows.Forms.TextBox t_modele;
         private System.Windows.Forms.Label lab_fournisseur;
         private System.Windows.Forms.PictureBox pic_materiel;
         private System.Windows.Forms.NumericUpDown t_ht;
@@ -361,6 +361,7 @@
         private System.Windows.Forms.Button b_quitter;
         private System.Windows.Forms.ComboBox list_materiels;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox list_fournisseurs;
+        private System.Windows.Forms.TextBox t_modele;
+        private System.Windows.Forms.TextBox t_fournisseur;
     }
 }
