@@ -116,5 +116,15 @@ namespace MusicHall
         {
 
         }
+
+        private void tableLayoutPanel_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void aPropos_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

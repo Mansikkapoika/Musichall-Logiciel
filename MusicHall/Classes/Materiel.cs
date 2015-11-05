@@ -4,21 +4,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MusicHall
+namespace MusicHall.Classes
 {
     public class Materiel
     {
         private int idMateriel;
         private String libelle;
         private String description;
-        private int prixAchHT;
-        private int prixLoca;
+        private decimal prixAchHT;
+        private decimal prixLoca;
         private int idSousCategorie;
         private String Marque;
         private String Modele;
         private String Fournisseur;
 
-        public Materiel(int idMateriel, String libelle, String description, int prixAchHT, int prixLoca, int idSousCategorie, String Marque, String Modele, String Fournisseur)
+        public Materiel(int idMateriel, String libelle, String description, decimal prixAchHT, decimal prixLoca, int idSousCategorie, String Marque, String Modele, String Fournisseur)
         {
             this.idMateriel = idMateriel;
             this.libelle = libelle;
@@ -31,7 +31,7 @@ namespace MusicHall
             this.Fournisseur = Fournisseur;
         }
 
-        // Accesseurs à écrire
+        // Accesseurs
 
         public int getId()
         {
@@ -48,12 +48,12 @@ namespace MusicHall
             return this.description;
         }
 
-        public int getPrixAch()
+        public decimal getPrixAch()
         {
             return this.prixAchHT;
         }
 
-        public int getPrixLoca()
+        public decimal getPrixLoca()
         {
             return this.prixLoca;
         }
@@ -71,6 +71,11 @@ namespace MusicHall
         public String getFournisseur()
         {
             return this.Fournisseur;
+        }
+
+        public int getIdSousCategorie()
+        {
+            return this.idSousCategorie;
         }
 
     }

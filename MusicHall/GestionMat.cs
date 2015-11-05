@@ -10,13 +10,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MusicHall.Classes;
 
 namespace MusicHall
 {
     public partial class GestionMat : Form
     {
         Collection<Materiel> CollectionMateriel;
-        int NumMaterielCourant = 1;
+        Collection<Categories> CollectionCategorie;
+        Collection<SousCategories> CollectionSousCategories;
 
         private void RemiseAZero()
         {
@@ -43,8 +45,12 @@ namespace MusicHall
             b_validerAjout.Enabled = false;
             b_validerModification.Enabled = false;
             b_annuler.Enabled = false;
-            // On empeche l'utilisateur d'écrire dans le combobox
+            list_categories.Enabled = false;
+            list_souscategories.Enabled = false;
+            // On empeche l'utilisateur d'écrire dans les combobox
             list_materiels.DropDownStyle = ComboBoxStyle.DropDownList;
+            list_categories.DropDownStyle = ComboBoxStyle.DropDownList;
+            list_souscategories.DropDownStyle = ComboBoxStyle.DropDownList;
         }
 
         private void DebloquerChampsSaisie()
@@ -57,6 +63,8 @@ namespace MusicHall
             t_marque.Enabled = true;
             t_modele.Enabled = true;
             t_fournisseur.Enabled = true;
+            list_categories.Enabled = true;
+            list_souscategories.Enabled = true;
         }
 
         public GestionMat()
@@ -72,6 +80,9 @@ namespace MusicHall
             // On met le curseur sur le premier champ
             t_nom.Focus();
 
+            // Ajout des infos au combobox de catégories
+            RemplirComboCategorie();
+
             // Blocage / Déblocage des boutons et champs
             b_ajouterMateriel.Enabled = false;
             b_modifierMateriel.Enabled = false;
@@ -80,13 +91,15 @@ namespace MusicHall
             b_annuler.Enabled = true;
 
             DebloquerChampsSaisie();
-
         }
 
         private void b_modifierMateriel_Click(object sender, EventArgs e)
         {
             // On met le curseur sur le nom
             t_nom.Focus();
+
+            // Ajout des infos au combobox de catégories
+            RemplirComboCategorie();
 
             // Blocage / Déblocage des champs
             DebloquerChampsSaisie();
@@ -101,14 +114,17 @@ namespace MusicHall
         {
             try
             {
-                // ON rempli la collection
+                // On rempli la collection de matériels
                 CollectionMateriel = Modeles.M_Materiel.GetMateriel();
+
+                // On rempli la collection de catégories
+                CollectionCategorie = Modeles.M_Categories.getCategories();
 
                 // Blocage des champs de saisie par défaut
                 BloquerChampsSaisie();
 
-                // Ajout des infos au combobox
-                RemplirComboMateriel(CollectionMateriel[NumMaterielCourant - 1]);
+                // Ajout des infos au combobox de matériels
+                RemplirComboMateriel();
             }
             catch (Exception ex)
             {
@@ -116,12 +132,31 @@ namespace MusicHall
             }
         }
 
-        private void RemplirComboMateriel(Materiel unMateriel)
+        private void RemplirComboMateriel()
         {
-            // On rempli le menu déroulant de produits
+            // On rempli le menu déroulant de produits via la collection
             foreach (Materiel leMateriel in CollectionMateriel)
             {
                 list_materiels.Items.Add(leMateriel.getLibelle());
+            }
+        }
+
+        private void RemplirComboCategorie()
+        {
+            // On rempli le menu déroulant de catégories via la collection
+            foreach (Categories uneCategorie in CollectionCategorie)
+            {
+                list_categories.Items.Add(uneCategorie.getLibelle());
+            }
+        }
+
+        private void RemplirComboSousCategorie()
+        {
+            list_souscategories.Items.Clear();
+            // On rempli le menu déroulant de sous-catégories via la collection
+            foreach (SousCategories uneSousCategorie in CollectionSousCategories)
+            {
+                list_souscategories.Items.Add(uneSousCategorie.getLibelle());
             }
         }
 
@@ -136,8 +171,6 @@ namespace MusicHall
             t_marque.Text = leMateriel.getMarque();
             t_modele.Text = leMateriel.getModele();
             t_fournisseur.Text = leMateriel.getFournisseur();
-            
-
         }
 
         private void label7_Click(object sender, EventArgs e)
@@ -163,6 +196,8 @@ namespace MusicHall
             b_ajouterMateriel.Enabled = true;
             b_modifierMateriel.Enabled = true;
             b_supprimerMateriel.Enabled = true;
+            list_categories.Items.Clear();
+            list_souscategories.Items.Clear();
         }
 
         private void b_supprimerMateriel_Click(object sender, EventArgs e)
@@ -202,6 +237,7 @@ namespace MusicHall
 
         private void list_materiels_SelectedIndexChanged(object sender, EventArgs e)
         {
+            // On rempli les champs en fonction du matériel selectionné
             AffecterValeurs(CollectionMateriel[list_materiels.SelectedIndex]);
         }
 
@@ -213,6 +249,32 @@ namespace MusicHall
         private void lab_fournisseur_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // On rempli la collection de sous-catégories au clic de la catégorie (qui remplira sa combobox)
+            CollectionSousCategories = Modeles.M_Categories.getSousCategories(CollectionCategorie[list_categories.SelectedIndex]);
+            RemplirComboSousCategorie();
+        }
+
+        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void b_validerAjout_Click(object sender, EventArgs e)
+        {
+            // On créé un objet de matériel qui sera utilisé pour l'ajout de celui-ci dans la BDD
+            Materiel unMateriel = null;
+            int idMateriel = 1;
+            unMateriel = new Materiel(idMateriel, t_nom.Text, t_description.Text, t_ht.Value, t_location.Value, CollectionSousCategories[list_souscategories.SelectedIndex].getCode(), t_marque.Text, t_modele.Text, t_fournisseur.Text);
+            M_Materiel.ajouterMateriel(unMateriel);
         }
     }
 }

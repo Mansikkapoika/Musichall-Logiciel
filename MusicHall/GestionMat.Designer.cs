@@ -53,6 +53,10 @@
             this.label2 = new System.Windows.Forms.Label();
             this.t_modele = new System.Windows.Forms.TextBox();
             this.t_fournisseur = new System.Windows.Forms.TextBox();
+            this.list_categories = new System.Windows.Forms.ComboBox();
+            this.list_souscategories = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pic_materiel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.t_ht)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.t_location)).BeginInit();
@@ -98,16 +102,17 @@
             // 
             // b_validerAjout
             // 
-            this.b_validerAjout.Location = new System.Drawing.Point(98, 432);
+            this.b_validerAjout.Location = new System.Drawing.Point(381, 355);
             this.b_validerAjout.Name = "b_validerAjout";
             this.b_validerAjout.Size = new System.Drawing.Size(91, 46);
             this.b_validerAjout.TabIndex = 4;
             this.b_validerAjout.Text = "Valider l\'ajout";
             this.b_validerAjout.UseVisualStyleBackColor = true;
+            this.b_validerAjout.Click += new System.EventHandler(this.b_validerAjout_Click);
             // 
             // b_validerModification
             // 
-            this.b_validerModification.Location = new System.Drawing.Point(214, 432);
+            this.b_validerModification.Location = new System.Drawing.Point(497, 355);
             this.b_validerModification.Name = "b_validerModification";
             this.b_validerModification.Size = new System.Drawing.Size(97, 46);
             this.b_validerModification.TabIndex = 5;
@@ -116,7 +121,7 @@
             // 
             // b_annuler
             // 
-            this.b_annuler.Location = new System.Drawing.Point(98, 498);
+            this.b_annuler.Location = new System.Drawing.Point(381, 421);
             this.b_annuler.Name = "b_annuler";
             this.b_annuler.Size = new System.Drawing.Size(213, 46);
             this.b_annuler.TabIndex = 6;
@@ -152,7 +157,7 @@
             // 
             // t_description
             // 
-            this.t_description.Location = new System.Drawing.Point(98, 218);
+            this.t_description.Location = new System.Drawing.Point(99, 218);
             this.t_description.Name = "t_description";
             this.t_description.Size = new System.Drawing.Size(213, 88);
             this.t_description.TabIndex = 10;
@@ -206,7 +211,7 @@
             // lab_fournisseur
             // 
             this.lab_fournisseur.AutoSize = true;
-            this.lab_fournisseur.Location = new System.Drawing.Point(27, 390);
+            this.lab_fournisseur.Location = new System.Drawing.Point(31, 393);
             this.lab_fournisseur.Name = "lab_fournisseur";
             this.lab_fournisseur.Size = new System.Drawing.Size(61, 13);
             this.lab_fournisseur.TabIndex = 19;
@@ -216,7 +221,7 @@
             // pic_materiel
             // 
             this.pic_materiel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.pic_materiel.Location = new System.Drawing.Point(568, 105);
+            this.pic_materiel.Location = new System.Drawing.Point(371, 105);
             this.pic_materiel.Name = "pic_materiel";
             this.pic_materiel.Size = new System.Drawing.Size(234, 200);
             this.pic_materiel.TabIndex = 22;
@@ -226,7 +231,7 @@
             // 
             this.t_ht.DecimalPlaces = 2;
             this.t_ht.Location = new System.Drawing.Point(98, 140);
-            this.t_ht.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.t_ht.Margin = new System.Windows.Forms.Padding(2);
             this.t_ht.Maximum = new decimal(new int[] {
             10000,
             0,
@@ -241,7 +246,7 @@
             // 
             this.t_location.DecimalPlaces = 2;
             this.t_location.Location = new System.Drawing.Point(98, 176);
-            this.t_location.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.t_location.Margin = new System.Windows.Forms.Padding(2);
             this.t_location.Maximum = new decimal(new int[] {
             10000,
             0,
@@ -265,7 +270,7 @@
             // list_materiels
             // 
             this.list_materiels.FormattingEnabled = true;
-            this.list_materiels.Location = new System.Drawing.Point(371, 141);
+            this.list_materiels.Location = new System.Drawing.Point(666, 138);
             this.list_materiels.Name = "list_materiels";
             this.list_materiels.Size = new System.Drawing.Size(125, 21);
             this.list_materiels.TabIndex = 26;
@@ -274,7 +279,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(368, 108);
+            this.label2.Location = new System.Drawing.Point(663, 105);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(105, 13);
             this.label2.TabIndex = 27;
@@ -289,16 +294,57 @@
             // 
             // t_fournisseur
             // 
-            this.t_fournisseur.Location = new System.Drawing.Point(99, 387);
+            this.t_fournisseur.Location = new System.Drawing.Point(99, 390);
             this.t_fournisseur.Name = "t_fournisseur";
             this.t_fournisseur.Size = new System.Drawing.Size(213, 20);
             this.t_fournisseur.TabIndex = 29;
+            // 
+            // list_categories
+            // 
+            this.list_categories.FormattingEnabled = true;
+            this.list_categories.Location = new System.Drawing.Point(99, 428);
+            this.list_categories.Name = "list_categories";
+            this.list_categories.Size = new System.Drawing.Size(213, 21);
+            this.list_categories.TabIndex = 30;
+            this.list_categories.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            // 
+            // list_souscategories
+            // 
+            this.list_souscategories.FormattingEnabled = true;
+            this.list_souscategories.Location = new System.Drawing.Point(99, 464);
+            this.list_souscategories.Name = "list_souscategories";
+            this.list_souscategories.Size = new System.Drawing.Size(213, 21);
+            this.list_souscategories.TabIndex = 31;
+            this.list_souscategories.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(39, 431);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(52, 13);
+            this.label3.TabIndex = 32;
+            this.label3.Text = "Catégorie";
+            this.label3.Click += new System.EventHandler(this.label3_Click);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(13, 467);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(78, 13);
+            this.label4.TabIndex = 33;
+            this.label4.Text = "Sous-catégorie";
             // 
             // GestionMat
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(957, 602);
+            this.ClientSize = new System.Drawing.Size(846, 602);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.list_souscategories);
+            this.Controls.Add(this.list_categories);
             this.Controls.Add(this.t_fournisseur);
             this.Controls.Add(this.t_modele);
             this.Controls.Add(this.label2);
@@ -363,5 +409,9 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox t_modele;
         private System.Windows.Forms.TextBox t_fournisseur;
+        private System.Windows.Forms.ComboBox list_categories;
+        private System.Windows.Forms.ComboBox list_souscategories;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
     }
 }

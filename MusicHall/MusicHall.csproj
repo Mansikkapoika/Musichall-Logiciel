@@ -53,6 +53,7 @@
     <Compile Include="aPropos.Designer.cs">
       <DependentUpon>aPropos.cs</DependentUpon>
     </Compile>
+    <Compile Include="Classes\Categories.cs" />
     <Compile Include="HomeApp.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -65,7 +66,8 @@
     <Compile Include="GestionMat.Designer.cs">
       <DependentUpon>GestionMat.cs</DependentUpon>
     </Compile>
-    <Compile Include="Materiel.cs" />
+    <Compile Include="Classes\Materiel.cs" />
+    <Compile Include="Modeles\M_Categories.cs" />
     <Compile Include="Modeles\M_Materiel.cs" />
     <Compile Include="Modeles\M_Connexion.cs" />
     <Compile Include="Program.cs" />
