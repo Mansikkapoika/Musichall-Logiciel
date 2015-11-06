@@ -19,7 +19,6 @@ namespace MusicHall
         Collection<Materiel> CollectionMateriel;
         Collection<Categories> CollectionCategorie;
         Collection<SousCategories> CollectionSousCategories;
-        int idMaterielCourant;
 
         private void RemiseAZero()
         {
@@ -85,8 +84,6 @@ namespace MusicHall
             RemplirComboCategorie();
 
             // Blocage / Déblocage des boutons et champs
-            list_materiels.Enabled = false;
-            list_materiels.ResetText();
             b_ajouterMateriel.Enabled = false;
             b_modifierMateriel.Enabled = false;
             b_supprimerMateriel.Enabled = false;
@@ -167,7 +164,6 @@ namespace MusicHall
         {
             // On affecte les valeurs aux champs en fonction du clique dans le menu déroulant de produits
             Materiel leMateriel = unMateriel;
-            idMaterielCourant = leMateriel.getId();
             t_nom.Text = leMateriel.getLibelle();
             t_ht.Value = leMateriel.getPrixAch();
             t_location.Value = leMateriel.getPrixLoca();
@@ -195,8 +191,8 @@ namespace MusicHall
         private void b_annuler_Click(object sender, EventArgs e)
         {
             BloquerChampsSaisie();
+            b_validerAjout.Enabled = false;
             RemiseAZero();
-            list_materiels.Enabled = true;
             b_ajouterMateriel.Enabled = true;
             b_modifierMateriel.Enabled = true;
             b_supprimerMateriel.Enabled = true;
@@ -278,27 +274,7 @@ namespace MusicHall
             Materiel unMateriel = null;
             int idMateriel = 1;
             unMateriel = new Materiel(idMateriel, t_nom.Text, t_description.Text, t_ht.Value, t_location.Value, CollectionSousCategories[list_souscategories.SelectedIndex].getCode(), t_marque.Text, t_modele.Text, t_fournisseur.Text);
-
-            // On ajoute le matériel
             M_Materiel.ajouterMateriel(unMateriel);
-
-            // On rebloque les boutons et on recharge la liste
-            BloquerChampsSaisie();
-            RemiseAZero();
-            list_materiels.Enabled = true;
-            b_ajouterMateriel.Enabled = true;
-            b_modifierMateriel.Enabled = true;
-            b_supprimerMateriel.Enabled = true;
-            // Vide les items et les re-remplis -> Ne fonctionne pas
-            list_materiels.Items.Clear();
-            RemplirComboMateriel();
-        }
-
-        private void b_validerModification_Click(object sender, EventArgs e)
-        {
-            Materiel unMateriel = null;
-            unMateriel = new Materiel(idMaterielCourant, t_nom.Text, t_description.Text, t_ht.Value, t_location.Value, CollectionSousCategories[list_souscategories.SelectedIndex].getCode(), t_marque.Text, t_modele.Text, t_fournisseur.Text);
-            M_Materiel.modifierMateriel(unMateriel);
         }
     }
 }

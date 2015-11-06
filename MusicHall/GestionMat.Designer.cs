@@ -118,7 +118,6 @@
             this.b_validerModification.TabIndex = 5;
             this.b_validerModification.Text = "Valider modification";
             this.b_validerModification.UseVisualStyleBackColor = true;
-            this.b_validerModification.Click += new System.EventHandler(this.b_validerModification_Click);
             // 
             // b_annuler
             // 
