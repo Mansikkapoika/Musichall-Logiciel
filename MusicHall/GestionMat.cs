@@ -52,7 +52,7 @@ namespace MusicHall
             list_categories.DropDownStyle = ComboBoxStyle.DropDownList;
             list_souscategories.DropDownStyle = ComboBoxStyle.DropDownList;
         }
-         
+        
         private void DebloquerChampsSaisie()
         {
             // On débloque tous les champs de saisie
