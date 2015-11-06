@@ -45,3 +45,6 @@ C:\Users\Rodaxfck\Documents\GitHubVisualStudio\musiquedesesmorts-\MusicHall\obj\
 C:\Users\Rodaxfck\Documents\GitHubVisualStudio\musiquedesesmorts-\MusicHall\obj\Debug\MusicHall.HomeApp.resources
 C:\Users\Rodaxfck\Documents\GitHubVisualStudio\musiquedesesmorts-\MusicHall\obj\Debug\MusicHall.Properties.Resources.resources
 C:\Users\Rodaxfck\Documents\GitHubVisualStudio\musiquedesesmorts-\MusicHall\obj\Debug\MusicHall.csproj.GenerateResource.Cache
+C:\Users\Rodaxfck\Documents\GitHubVisualStudio\musiquedesesmorts-1\MusicHall\bin\Debug\MusicHall.exe.config
+C:\Users\Rodaxfck\Documents\GitHubVisualStudio\musiquedesesmorts-1\MusicHall\obj\Debug\MusicHall.exe
+C:\Users\Rodaxfck\Documents\GitHubVisualStudio\musiquedesesmorts-1\MusicHall\obj\Debug\MusicHall.pdb
