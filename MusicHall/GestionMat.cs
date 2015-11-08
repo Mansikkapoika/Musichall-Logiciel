@@ -211,7 +211,7 @@ namespace MusicHall
             {
                 try
                 {
-
+                    Modeles.M_Materiel.SupprimerMateriel(CollectionMateriel[list_materiels.SelectedIndex]);
                 }
                 catch (Exception ex)
                 {

@@ -148,6 +148,31 @@ namespace MusicHall.Modeles
         public static void SupprimerMateriel(Materiel unMateriel)
         {
 
+            try
+            {
+                // Ouverture de la connexion
+                M_Connexion.GestionMateriel.Open();
+
+                // Requête SQL
+                string reqSQL = "DELETE FROM materiel WHERE idMateriel = ?";
+
+                // Execution de la requête
+                MySqlCommand Command1 = new MySqlCommand(reqSQL, M_Connexion.GestionMateriel);
+
+                // Création des paramètres correspondants aux ?
+                MySqlParameter Param1 = Command1.Parameters.Add("@idMateriel", MySqlDbType.Int16);
+
+                // Affectation des valeurs
+                Param1.Value = unMateriel.getId();
+
+                Command1.ExecuteNonQuery();
+                M_Connexion.GestionMateriel.Close();
+                MessageBox.Show("Matériel supprimé.");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erreur :" + ex.Message);
+            }
         }
 
     }
