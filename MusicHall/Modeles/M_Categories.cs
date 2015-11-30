@@ -22,7 +22,7 @@ namespace MusicHall.Modeles
                 CollectionCategorie.Clear();
 
                 // Ouverture de la connexion
-                M_Connexion.GestionMateriel.Open();
+                M_Connexion.Gestion.Open();
 
                 // Requête SQL
                 String ReqSQL = "SELECT * FROM categorie";
@@ -31,7 +31,7 @@ namespace MusicHall.Modeles
                 MySqlDataReader MonReaderCategorie;
 
                 // Execution de la requête
-                MySqlCommand Command1 = new MySqlCommand(ReqSQL, M_Connexion.GestionMateriel);
+                MySqlCommand Command1 = new MySqlCommand(ReqSQL, M_Connexion.Gestion);
                 MonReaderCategorie = Command1.ExecuteReader();
 
                 Categories uneCategories;
@@ -42,7 +42,7 @@ namespace MusicHall.Modeles
                     CollectionCategorie.Add(uneCategories);
                 }
                 // Fermeture de la connexion
-                M_Connexion.GestionMateriel.Close();
+                M_Connexion.Gestion.Close();
             }
             catch (Exception ex)
             {
@@ -61,13 +61,13 @@ namespace MusicHall.Modeles
             {
                 CollectionSousCategorie.Clear();
 
-                M_Connexion.GestionMateriel.Open();
+                M_Connexion.Gestion.Open();
 
                 String ReqSQL = "SELECT * FROM souscategorie WHERE idCategorie = ?";
 
                 MySqlDataReader MonReaderCategorie;
 
-                MySqlCommand Command1 = new MySqlCommand(ReqSQL, M_Connexion.GestionMateriel);
+                MySqlCommand Command1 = new MySqlCommand(ReqSQL, M_Connexion.Gestion);
                 MySqlParameter Param1 = Command1.Parameters.Add("@idSousCategorie", MySqlDbType.Int16);
                 Param1.Value = uneCategorie.getCode();
 
@@ -81,7 +81,7 @@ namespace MusicHall.Modeles
                     CollectionSousCategorie.Add(uneCategories);
                 }
                 // Fermeture de la connexion
-                M_Connexion.GestionMateriel.Close();
+                M_Connexion.Gestion.Close();
             }
             catch (Exception ex)
             {

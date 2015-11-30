@@ -34,6 +34,7 @@
             this.gestionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.materielToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.demandesLocationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.commandesToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.consulationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.commandesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.locationsEnCoursToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -75,7 +76,8 @@
             // 
             this.gestionToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.materielToolStripMenuItem,
-            this.demandesLocationToolStripMenuItem});
+            this.demandesLocationToolStripMenuItem,
+            this.commandesToolStripMenuItem1});
             this.gestionToolStripMenuItem.Name = "gestionToolStripMenuItem";
             this.gestionToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
             this.gestionToolStripMenuItem.Text = "Gestion";
@@ -83,15 +85,22 @@
             // materielToolStripMenuItem
             // 
             this.materielToolStripMenuItem.Name = "materielToolStripMenuItem";
-            this.materielToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this.materielToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.materielToolStripMenuItem.Text = "Matériel";
             this.materielToolStripMenuItem.Click += new System.EventHandler(this.materielToolStripMenuItem_Click);
             // 
             // demandesLocationToolStripMenuItem
             // 
             this.demandesLocationToolStripMenuItem.Name = "demandesLocationToolStripMenuItem";
-            this.demandesLocationToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
-            this.demandesLocationToolStripMenuItem.Text = "Demandes location";
+            this.demandesLocationToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.demandesLocationToolStripMenuItem.Text = "Locations";
+            // 
+            // commandesToolStripMenuItem1
+            // 
+            this.commandesToolStripMenuItem1.Name = "commandesToolStripMenuItem1";
+            this.commandesToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.commandesToolStripMenuItem1.Text = "Commandes";
+            this.commandesToolStripMenuItem1.Click += new System.EventHandler(this.commandesToolStripMenuItem1_Click);
             // 
             // consulationToolStripMenuItem
             // 
@@ -152,6 +161,7 @@
         private System.Windows.Forms.ToolStripMenuItem locationsEnCoursToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem quitterToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem demandesLocationToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem commandesToolStripMenuItem1;
     }
 }
 

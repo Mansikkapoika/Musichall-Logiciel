@@ -48,3 +48,4 @@ C:\Users\Rodaxfck\Documents\GitHubVisualStudio\musiquedesesmorts-\MusicHall\obj\
 C:\Users\Rodaxfck\Documents\GitHubVisualStudio\musiquedesesmorts-1\MusicHall\bin\Debug\MusicHall.exe.config
 C:\Users\Rodaxfck\Documents\GitHubVisualStudio\musiquedesesmorts-1\MusicHall\obj\Debug\MusicHall.exe
 C:\Users\Rodaxfck\Documents\GitHubVisualStudio\musiquedesesmorts-1\MusicHall\obj\Debug\MusicHall.pdb
+C:\Users\Rodaxfck\Documents\GitHubVisualStudio\musiquedesesmorts-\MusicHall\obj\Debug\MusicHall.Vues.V_GestionCom.resources

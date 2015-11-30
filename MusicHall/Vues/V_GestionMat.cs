@@ -1,5 +1,4 @@
-﻿using MusicHall.Modeles;
-using MySql.Data.MySqlClient;
+﻿using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -11,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using MusicHall.Classes;
+using MusicHall.Modeles;
 
 namespace MusicHall
 {
@@ -274,13 +274,20 @@ namespace MusicHall
 
         private void b_validerAjout_Click(object sender, EventArgs e)
         {
-            // On créé un objet de matériel qui sera utilisé pour l'ajout de celui-ci dans la BDD
-            Materiel unMateriel = null;
-            int idMateriel = 1;
-            unMateriel = new Materiel(idMateriel, t_nom.Text, t_description.Text, t_ht.Value, t_location.Value, CollectionSousCategories[list_souscategories.SelectedIndex].getCode(), t_marque.Text, t_modele.Text, t_fournisseur.Text);
+            try
+            {
+                // On créé un objet de matériel qui sera utilisé pour l'ajout de celui-ci dans la BDD
+                Materiel unMateriel = null;
+                int idMateriel = 1;
+                unMateriel = new Materiel(idMateriel, t_nom.Text, t_description.Text, t_ht.Value, t_location.Value, CollectionSousCategories[list_souscategories.SelectedIndex].getCode(), t_marque.Text, t_modele.Text, t_fournisseur.Text);
 
-            // On ajoute le matériel
-            M_Materiel.ajouterMateriel(unMateriel);
+                // On ajoute le matériel
+                M_Materiel.ajouterMateriel(unMateriel);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Veuillez compléter tous les champs.");
+            }
 
             // On rebloque les boutons et on recharge la liste
             BloquerChampsSaisie();
@@ -296,9 +303,17 @@ namespace MusicHall
 
         private void b_validerModification_Click(object sender, EventArgs e)
         {
-            Materiel unMateriel = null;
-            unMateriel = new Materiel(idMaterielCourant, t_nom.Text, t_description.Text, t_ht.Value, t_location.Value, CollectionSousCategories[list_souscategories.SelectedIndex].getCode(), t_marque.Text, t_modele.Text, t_fournisseur.Text);
-            M_Materiel.modifierMateriel(unMateriel);
+            try
+            {
+                Materiel unMateriel = null;
+                unMateriel = new Materiel(idMaterielCourant, t_nom.Text, t_description.Text, t_ht.Value, t_location.Value, CollectionSousCategories[list_souscategories.SelectedIndex].getCode(), t_marque.Text, t_modele.Text, t_fournisseur.Text);
+                M_Materiel.modifierMateriel(unMateriel);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Veuillez selectionner un matériel.");
+            }
+
         }
     }
 }

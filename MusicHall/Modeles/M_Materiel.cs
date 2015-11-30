@@ -22,14 +22,14 @@ namespace MusicHall.Modeles
                 CollectionMateriel.Clear();
 
                 // Ouverture de la connexion
-                M_Connexion.GestionMateriel.Open()
+                M_Connexion.Gestion.Open()
                     ;
                 // Requête SQL
                 String ReqSQL = "SELECT * FROM materiel";
 
                 // Déclaration du curseur et execution de la requête
                 MySqlDataReader MonReaderMateriel;
-                MySqlCommand Command1 = new MySqlCommand(ReqSQL, M_Connexion.GestionMateriel);
+                MySqlCommand Command1 = new MySqlCommand(ReqSQL, M_Connexion.Gestion);
                 MonReaderMateriel = Command1.ExecuteReader();
 
                 Materiel nouveauMateriel;
@@ -40,7 +40,7 @@ namespace MusicHall.Modeles
                     CollectionMateriel.Add(nouveauMateriel);
                 }
                 // Fermeture de la connexion
-                M_Connexion.GestionMateriel.Close();
+                M_Connexion.Gestion.Close();
             }
             catch (Exception ex)
             {
@@ -56,13 +56,13 @@ namespace MusicHall.Modeles
             try
             {
                 // Ouverture de la connexion
-                M_Connexion.GestionMateriel.Open();
+                M_Connexion.Gestion.Open();
 
                 // Requête SQL
                 string reqSQL = "INSERT INTO materiel VALUES (NULL,?,?,?,?,?,?,?,?)";
 
                 // Execution de la requête
-                MySqlCommand Command1 = new MySqlCommand(reqSQL, M_Connexion.GestionMateriel);
+                MySqlCommand Command1 = new MySqlCommand(reqSQL, M_Connexion.Gestion);
 
                 // Création des paramètres correspondants aux ?
                 //MySqlParameter Param1 = Command1.Parameters.Add("@idMateriel", MySqlDbType.Int16);
@@ -87,7 +87,7 @@ namespace MusicHall.Modeles
                 Param9.Value = unMateriel.getFournisseur();
 
                 Command1.ExecuteNonQuery();
-                M_Connexion.GestionMateriel.Close();
+                M_Connexion.Gestion.Close();
                 MessageBox.Show("Matériel ajouté.");
             }
             catch (Exception ex)
@@ -102,13 +102,13 @@ namespace MusicHall.Modeles
             try
             {
                 // Ouverture de la connexion
-                M_Connexion.GestionMateriel.Open();
+                M_Connexion.Gestion.Open();
 
                 // Requête SQL
                 string reqSQL = "UPDATE materiel SET libelle = ?, description = ?, prixAchHT = ?, prixLoca = ?, idSousCategorie = ?, Marque = ?, Modele = ?, Fournisseur = ? WHERE idMateriel = ?";
 
                 // Execution de la requête
-                MySqlCommand Command1 = new MySqlCommand(reqSQL, M_Connexion.GestionMateriel);
+                MySqlCommand Command1 = new MySqlCommand(reqSQL, M_Connexion.Gestion);
 
                 // Création des paramètres correspondants aux ?
                 //MySqlParameter Param1 = Command1.Parameters.Add("@idMateriel", MySqlDbType.Int16);
@@ -136,7 +136,7 @@ namespace MusicHall.Modeles
                 Param9.Value = unMateriel.getId();
 
                 Command1.ExecuteNonQuery();
-                M_Connexion.GestionMateriel.Close();
+                M_Connexion.Gestion.Close();
                 MessageBox.Show("Matériel modifié.");
             }
             catch (Exception ex)
@@ -151,13 +151,13 @@ namespace MusicHall.Modeles
             try
             {
                 // Ouverture de la connexion
-                M_Connexion.GestionMateriel.Open();
+                M_Connexion.Gestion.Open();
 
                 // Requête SQL
                 string reqSQL = "DELETE FROM materiel WHERE idMateriel = ?";
 
                 // Execution de la requête
-                MySqlCommand Command1 = new MySqlCommand(reqSQL, M_Connexion.GestionMateriel);
+                MySqlCommand Command1 = new MySqlCommand(reqSQL, M_Connexion.Gestion);
 
                 // Création des paramètres correspondants aux ?
                 MySqlParameter Param1 = Command1.Parameters.Add("@idMateriel", MySqlDbType.Int16);
@@ -166,7 +166,7 @@ namespace MusicHall.Modeles
                 Param1.Value = unMateriel.getId();
 
                 Command1.ExecuteNonQuery();
-                M_Connexion.GestionMateriel.Close();
+                M_Connexion.Gestion.Close();
                 MessageBox.Show("Matériel supprimé.");
             }
             catch (Exception ex)

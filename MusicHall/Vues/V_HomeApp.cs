@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MusicHall.Vues;
 
 namespace MusicHall
 {
@@ -47,6 +48,14 @@ namespace MusicHall
         private void quitterToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void commandesToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            V_GestionCom fenetre;
+            fenetre = new V_GestionCom();
+            fenetre.MdiParent = this;
+            fenetre.Show();
         }
     }
 }
