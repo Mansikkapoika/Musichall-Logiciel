@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using MusicHall.Classes;
+using System.Data;
 
 namespace MusicHall.Modeles
 {
@@ -36,7 +37,7 @@ namespace MusicHall.Modeles
 
                 while (MonReaderMateriel.Read())
                 {
-                    nouveauMateriel = new Materiel(int.Parse(MonReaderMateriel[0].ToString()), MonReaderMateriel[1].ToString(), MonReaderMateriel[2].ToString(), int.Parse(MonReaderMateriel[3].ToString()), int.Parse(MonReaderMateriel[4].ToString()), int.Parse(MonReaderMateriel[5].ToString()), MonReaderMateriel[6].ToString(), MonReaderMateriel[7].ToString(), MonReaderMateriel[8].ToString());
+                    nouveauMateriel = new Materiel(int.Parse(MonReaderMateriel[0].ToString()), MonReaderMateriel[1].ToString(), MonReaderMateriel[2].ToString(), decimal.Parse(MonReaderMateriel[3].ToString()), int.Parse(MonReaderMateriel[4].ToString()), MonReaderMateriel[5].ToString(), MonReaderMateriel[6].ToString(), MonReaderMateriel[7].ToString(), MonReaderMateriel[8].ToString());
                     CollectionMateriel.Add(nouveauMateriel);
                 }
                 // Fermeture de la connexion
@@ -45,9 +46,39 @@ namespace MusicHall.Modeles
             catch (Exception ex)
             {
                 MessageBox.Show("Erreur :" + ex.Message);
+                M_Connexion.Gestion.Close();
             }
 
             return CollectionMateriel;
+        }
+
+        public static DataTable getMaterielDt()
+        {
+
+            DataSet ds = new DataSet();
+            DataTable dt = new DataTable();
+
+            try
+            {
+                // Ouverture de la connexion
+                M_Connexion.Gestion.Open();
+                // Requête SQL
+                String ReqSQL = "SELECT * FROM Materiel";
+
+                MySqlDataAdapter da = new MySqlDataAdapter(ReqSQL, M_Connexion.Gestion);
+                MySqlCommandBuilder cb = new MySqlCommandBuilder(da);
+
+                da.Fill(ds, "materiel");
+                dt = ds.Tables[0];
+                // Fermeture de la connexion
+                M_Connexion.Gestion.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erreur :" + ex.Message);
+                M_Connexion.Gestion.Close();
+            }
+            return dt;
         }
 
         // Fonction d'ajout de matériel
@@ -69,22 +100,22 @@ namespace MusicHall.Modeles
                 MySqlParameter Param2 = Command1.Parameters.Add("@libelle", MySqlDbType.VarChar);
                 MySqlParameter Param3 = Command1.Parameters.Add("@description", MySqlDbType.VarChar);
                 MySqlParameter Param4 = Command1.Parameters.Add("@prixAchHT", MySqlDbType.Decimal);
-                MySqlParameter Param5 = Command1.Parameters.Add("@prixLoca", MySqlDbType.Decimal);
                 MySqlParameter Param6 = Command1.Parameters.Add("@iSousCategorie", MySqlDbType.Int16);
                 MySqlParameter Param7 = Command1.Parameters.Add("@Marque", MySqlDbType.VarChar);
                 MySqlParameter Param8 = Command1.Parameters.Add("@Modele", MySqlDbType.VarChar);
                 MySqlParameter Param9 = Command1.Parameters.Add("@Fournisseur", MySqlDbType.VarChar);
+                MySqlParameter Param10 = Command1.Parameters.Add("@cheminImage", MySqlDbType.VarChar);
 
                 // Affectation des valeurs
                 // On abandonne le faux paramètre 1 car l'ID est auto-incrémenté
                 Param2.Value = unMateriel.getLibelle();
                 Param3.Value = unMateriel.getDescription();
                 Param4.Value = unMateriel.getPrixAch();
-                Param5.Value = unMateriel.getPrixLoca();
                 Param6.Value = unMateriel.getIdSousCategorie();
                 Param7.Value = unMateriel.getMarque();
                 Param8.Value = unMateriel.getModele();
                 Param9.Value = unMateriel.getFournisseur();
+                Param10.Value = unMateriel.getCheminImage();
 
                 Command1.ExecuteNonQuery();
                 M_Connexion.Gestion.Close();
@@ -93,6 +124,7 @@ namespace MusicHall.Modeles
             catch (Exception ex)
             {
                 MessageBox.Show("Erreur :" + ex.Message);
+                M_Connexion.Gestion.Close();
             }
         }
 
@@ -105,7 +137,7 @@ namespace MusicHall.Modeles
                 M_Connexion.Gestion.Open();
 
                 // Requête SQL
-                string reqSQL = "UPDATE materiel SET libelle = ?, description = ?, prixAchHT = ?, prixLoca = ?, idSousCategorie = ?, Marque = ?, Modele = ?, Fournisseur = ? WHERE idMateriel = ?";
+                string reqSQL = "UPDATE materiel SET libelle = ?, description = ?, prixAchHT = ?, idSousCategorie = ?, Marque = ?, Modele = ?, Fournisseur = ? WHERE idMateriel = ?";
 
                 // Execution de la requête
                 MySqlCommand Command1 = new MySqlCommand(reqSQL, M_Connexion.Gestion);
@@ -115,7 +147,6 @@ namespace MusicHall.Modeles
                 MySqlParameter Param1 = Command1.Parameters.Add("@libelle", MySqlDbType.VarChar);
                 MySqlParameter Param2 = Command1.Parameters.Add("@description", MySqlDbType.VarChar);
                 MySqlParameter Param3 = Command1.Parameters.Add("@prixAchHT", MySqlDbType.Decimal);
-                MySqlParameter Param4 = Command1.Parameters.Add("@prixLoca", MySqlDbType.Decimal);
                 MySqlParameter Param5 = Command1.Parameters.Add("@iSousCategorie", MySqlDbType.Int16);
                 MySqlParameter Param6 = Command1.Parameters.Add("@Marque", MySqlDbType.VarChar);
                 MySqlParameter Param7 = Command1.Parameters.Add("@Modele", MySqlDbType.VarChar);
@@ -128,7 +159,6 @@ namespace MusicHall.Modeles
                 Param1.Value = unMateriel.getLibelle();
                 Param2.Value = unMateriel.getDescription();
                 Param3.Value = unMateriel.getPrixAch();
-                Param4.Value = unMateriel.getPrixLoca();
                 Param5.Value = unMateriel.getIdSousCategorie();
                 Param6.Value = unMateriel.getMarque();
                 Param7.Value = unMateriel.getModele();
@@ -142,6 +172,7 @@ namespace MusicHall.Modeles
             catch (Exception ex)
             {
                 MessageBox.Show("Erreur :" + ex.Message);
+                M_Connexion.Gestion.Close();
             }
         }
 
@@ -172,6 +203,7 @@ namespace MusicHall.Modeles
             catch (Exception ex)
             {
                 MessageBox.Show("Erreur :" + ex.Message);
+                M_Connexion.Gestion.Close();
             }
         }
 

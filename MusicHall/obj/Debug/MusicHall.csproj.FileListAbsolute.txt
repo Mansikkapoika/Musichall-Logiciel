@@ -49,3 +49,17 @@ C:\Users\Rodaxfck\Documents\GitHubVisualStudio\musiquedesesmorts-1\MusicHall\bin
 C:\Users\Rodaxfck\Documents\GitHubVisualStudio\musiquedesesmorts-1\MusicHall\obj\Debug\MusicHall.exe
 C:\Users\Rodaxfck\Documents\GitHubVisualStudio\musiquedesesmorts-1\MusicHall\obj\Debug\MusicHall.pdb
 C:\Users\Rodaxfck\Documents\GitHubVisualStudio\musiquedesesmorts-\MusicHall\obj\Debug\MusicHall.Vues.V_GestionCom.resources
+C:\Users\Rodaxfck\Source\Repos\musiquedesesmorts-\MusicHall\bin\Debug\MusicHall.exe.config
+C:\Users\Rodaxfck\Source\Repos\musiquedesesmorts-\MusicHall\obj\Debug\MusicHall.exe
+C:\Users\Rodaxfck\Source\Repos\musiquedesesmorts-\MusicHall\obj\Debug\MusicHall.pdb
+C:\Users\Rodaxfck\Source\Repos\musiquedesesmorts-\MusicHall\bin\Debug\MusicHall.exe
+C:\Users\Rodaxfck\Source\Repos\musiquedesesmorts-\MusicHall\bin\Debug\MusicHall.pdb
+C:\Users\Rodaxfck\Source\Repos\musiquedesesmorts-\MusicHall\obj\Debug\MusicHall.csprojResolveAssemblyReference.cache
+C:\Users\Rodaxfck\Source\Repos\musiquedesesmorts-\MusicHall\obj\Debug\MusicHall.aPropos.resources
+C:\Users\Rodaxfck\Source\Repos\musiquedesesmorts-\MusicHall\obj\Debug\MusicHall.Vues.V_GestionCom.resources
+C:\Users\Rodaxfck\Source\Repos\musiquedesesmorts-\MusicHall\obj\Debug\MusicHall.GestionMat.resources
+C:\Users\Rodaxfck\Source\Repos\musiquedesesmorts-\MusicHall\obj\Debug\MusicHall.HomeApp.resources
+C:\Users\Rodaxfck\Source\Repos\musiquedesesmorts-\MusicHall\obj\Debug\MusicHall.Properties.Resources.resources
+C:\Users\Rodaxfck\Source\Repos\musiquedesesmorts-\MusicHall\obj\Debug\MusicHall.csproj.GenerateResource.Cache
+C:\Users\Rodaxfck\Source\Repos\musiquedesesmorts-\MusicHall\obj\Debug\MusicHall.Vues.V_ListeCom.resources
+C:\Users\Rodaxfck\Source\Repos\musiquedesesmorts-\MusicHall\obj\Debug\MusicHall.Vues.V_ListeMat.resources

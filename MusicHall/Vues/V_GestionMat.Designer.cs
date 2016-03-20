@@ -40,14 +40,12 @@
             this.lab_description = new System.Windows.Forms.Label();
             this.t_description = new System.Windows.Forms.RichTextBox();
             this.lab_ht = new System.Windows.Forms.Label();
-            this.lab_location = new System.Windows.Forms.Label();
             this.lab_modele = new System.Windows.Forms.Label();
             this.t_marque = new System.Windows.Forms.TextBox();
             this.lab_marque = new System.Windows.Forms.Label();
             this.lab_fournisseur = new System.Windows.Forms.Label();
             this.pic_materiel = new System.Windows.Forms.PictureBox();
             this.t_ht = new System.Windows.Forms.NumericUpDown();
-            this.t_location = new System.Windows.Forms.NumericUpDown();
             this.b_quitter = new System.Windows.Forms.Button();
             this.list_materiels = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -57,9 +55,9 @@
             this.list_souscategories = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.b_ajoutPhoto = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pic_materiel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.t_ht)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.t_location)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -102,7 +100,7 @@
             // 
             // b_validerAjout
             // 
-            this.b_validerAjout.Location = new System.Drawing.Point(381, 355);
+            this.b_validerAjout.Location = new System.Drawing.Point(384, 376);
             this.b_validerAjout.Name = "b_validerAjout";
             this.b_validerAjout.Size = new System.Drawing.Size(91, 46);
             this.b_validerAjout.TabIndex = 4;
@@ -112,7 +110,7 @@
             // 
             // b_validerModification
             // 
-            this.b_validerModification.Location = new System.Drawing.Point(497, 355);
+            this.b_validerModification.Location = new System.Drawing.Point(500, 376);
             this.b_validerModification.Name = "b_validerModification";
             this.b_validerModification.Size = new System.Drawing.Size(97, 46);
             this.b_validerModification.TabIndex = 5;
@@ -122,7 +120,7 @@
             // 
             // b_annuler
             // 
-            this.b_annuler.Location = new System.Drawing.Point(381, 421);
+            this.b_annuler.Location = new System.Drawing.Point(384, 442);
             this.b_annuler.Name = "b_annuler";
             this.b_annuler.Size = new System.Drawing.Size(213, 46);
             this.b_annuler.TabIndex = 6;
@@ -133,7 +131,7 @@
             // lab_nom
             // 
             this.lab_nom.AutoSize = true;
-            this.lab_nom.Location = new System.Drawing.Point(60, 107);
+            this.lab_nom.Location = new System.Drawing.Point(59, 129);
             this.lab_nom.Name = "lab_nom";
             this.lab_nom.Size = new System.Drawing.Size(29, 13);
             this.lab_nom.TabIndex = 7;
@@ -141,7 +139,7 @@
             // 
             // t_nom
             // 
-            this.t_nom.Location = new System.Drawing.Point(98, 105);
+            this.t_nom.Location = new System.Drawing.Point(100, 126);
             this.t_nom.Name = "t_nom";
             this.t_nom.Size = new System.Drawing.Size(213, 20);
             this.t_nom.TabIndex = 8;
@@ -150,7 +148,7 @@
             // lab_description
             // 
             this.lab_description.AutoSize = true;
-            this.lab_description.Location = new System.Drawing.Point(28, 218);
+            this.lab_description.Location = new System.Drawing.Point(28, 205);
             this.lab_description.Name = "lab_description";
             this.lab_description.Size = new System.Drawing.Size(60, 13);
             this.lab_description.TabIndex = 9;
@@ -158,30 +156,21 @@
             // 
             // t_description
             // 
-            this.t_description.Location = new System.Drawing.Point(99, 218);
+            this.t_description.Location = new System.Drawing.Point(99, 202);
             this.t_description.Name = "t_description";
-            this.t_description.Size = new System.Drawing.Size(213, 88);
+            this.t_description.Size = new System.Drawing.Size(213, 104);
             this.t_description.TabIndex = 10;
             this.t_description.Text = "";
             // 
             // lab_ht
             // 
             this.lab_ht.AutoSize = true;
-            this.lab_ht.Location = new System.Drawing.Point(13, 141);
+            this.lab_ht.Location = new System.Drawing.Point(12, 163);
             this.lab_ht.Name = "lab_ht";
             this.lab_ht.Size = new System.Drawing.Size(76, 13);
             this.lab_ht.TabIndex = 11;
             this.lab_ht.Text = "Prix Hors Taxe";
             this.lab_ht.Click += new System.EventHandler(this.label4_Click);
-            // 
-            // lab_location
-            // 
-            this.lab_location.AutoSize = true;
-            this.lab_location.Location = new System.Drawing.Point(10, 176);
-            this.lab_location.Name = "lab_location";
-            this.lab_location.Size = new System.Drawing.Size(79, 13);
-            this.lab_location.TabIndex = 14;
-            this.lab_location.Text = "Prix de location";
             // 
             // lab_modele
             // 
@@ -225,13 +214,14 @@
             this.pic_materiel.Location = new System.Drawing.Point(371, 105);
             this.pic_materiel.Name = "pic_materiel";
             this.pic_materiel.Size = new System.Drawing.Size(234, 200);
+            this.pic_materiel.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pic_materiel.TabIndex = 22;
             this.pic_materiel.TabStop = false;
             // 
             // t_ht
             // 
             this.t_ht.DecimalPlaces = 2;
-            this.t_ht.Location = new System.Drawing.Point(98, 140);
+            this.t_ht.Location = new System.Drawing.Point(100, 161);
             this.t_ht.Margin = new System.Windows.Forms.Padding(2);
             this.t_ht.Maximum = new decimal(new int[] {
             10000,
@@ -242,21 +232,6 @@
             this.t_ht.Size = new System.Drawing.Size(90, 20);
             this.t_ht.TabIndex = 23;
             this.t_ht.ValueChanged += new System.EventHandler(this.t_ht_ValueChanged);
-            // 
-            // t_location
-            // 
-            this.t_location.DecimalPlaces = 2;
-            this.t_location.Location = new System.Drawing.Point(98, 176);
-            this.t_location.Margin = new System.Windows.Forms.Padding(2);
-            this.t_location.Maximum = new decimal(new int[] {
-            10000,
-            0,
-            0,
-            0});
-            this.t_location.Name = "t_location";
-            this.t_location.Size = new System.Drawing.Size(90, 20);
-            this.t_location.TabIndex = 24;
-            this.t_location.ValueChanged += new System.EventHandler(this.t_location_ValueChanged);
             // 
             // b_quitter
             // 
@@ -337,11 +312,22 @@
             this.label4.TabIndex = 33;
             this.label4.Text = "Sous-catégorie";
             // 
+            // b_ajoutPhoto
+            // 
+            this.b_ajoutPhoto.Location = new System.Drawing.Point(444, 309);
+            this.b_ajoutPhoto.Name = "b_ajoutPhoto";
+            this.b_ajoutPhoto.Size = new System.Drawing.Size(91, 46);
+            this.b_ajoutPhoto.TabIndex = 34;
+            this.b_ajoutPhoto.Text = "Ajouter une photo";
+            this.b_ajoutPhoto.UseVisualStyleBackColor = true;
+            this.b_ajoutPhoto.Click += new System.EventHandler(this.button1_Click_1);
+            // 
             // GestionMat
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(846, 602);
+            this.Controls.Add(this.b_ajoutPhoto);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.list_souscategories);
@@ -351,14 +337,12 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.list_materiels);
             this.Controls.Add(this.b_quitter);
-            this.Controls.Add(this.t_location);
             this.Controls.Add(this.t_ht);
             this.Controls.Add(this.pic_materiel);
             this.Controls.Add(this.lab_fournisseur);
             this.Controls.Add(this.lab_modele);
             this.Controls.Add(this.t_marque);
             this.Controls.Add(this.lab_marque);
-            this.Controls.Add(this.lab_location);
             this.Controls.Add(this.lab_ht);
             this.Controls.Add(this.t_description);
             this.Controls.Add(this.lab_description);
@@ -377,7 +361,6 @@
             this.Load += new System.EventHandler(this.GestionMat_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pic_materiel)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.t_ht)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.t_location)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -397,14 +380,12 @@
         private System.Windows.Forms.Label lab_description;
         private System.Windows.Forms.RichTextBox t_description;
         private System.Windows.Forms.Label lab_ht;
-        private System.Windows.Forms.Label lab_location;
         private System.Windows.Forms.Label lab_modele;
         private System.Windows.Forms.TextBox t_marque;
         private System.Windows.Forms.Label lab_marque;
         private System.Windows.Forms.Label lab_fournisseur;
         private System.Windows.Forms.PictureBox pic_materiel;
         private System.Windows.Forms.NumericUpDown t_ht;
-        private System.Windows.Forms.NumericUpDown t_location;
         private System.Windows.Forms.Button b_quitter;
         private System.Windows.Forms.ComboBox list_materiels;
         private System.Windows.Forms.Label label2;
@@ -414,5 +395,6 @@
         private System.Windows.Forms.ComboBox list_souscategories;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button b_ajoutPhoto;
     }
 }

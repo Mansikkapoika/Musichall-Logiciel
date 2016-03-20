@@ -39,6 +39,36 @@ namespace MusicHall.Modeles
             catch (Exception ex)
             {
                 MessageBox.Show("Erreur :" + ex.Message);
+                M_Connexion.Gestion.Close();
+            }
+            return dt;
+        }
+
+        public static DataTable getAllCommand()
+        {
+
+            DataSet ds = new DataSet();
+            DataTable dt = new DataTable();
+
+            try
+            {
+                // Ouverture de la connexion
+                M_Connexion.Gestion.Open();
+                // Requête SQL
+                String ReqSQL = "SELECT * FROM commande";
+
+                MySqlDataAdapter da = new MySqlDataAdapter(ReqSQL, M_Connexion.Gestion);
+                MySqlCommandBuilder cb = new MySqlCommandBuilder(da);
+
+                da.Fill(ds, "commande");
+                dt = ds.Tables[0];
+                // Fermeture de la connexion
+                M_Connexion.Gestion.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erreur :" + ex.Message);
+                M_Connexion.Gestion.Close();
             }
             return dt;
         }
@@ -72,6 +102,7 @@ namespace MusicHall.Modeles
             catch (Exception ex)
             {
                 MessageBox.Show("Erreur :" + ex.Message);
+                M_Connexion.Gestion.Close();
             }
         }
 

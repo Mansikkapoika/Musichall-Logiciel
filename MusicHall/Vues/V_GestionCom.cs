@@ -22,17 +22,16 @@ namespace MusicHall.Vues
 
         private void V_GestionCom_Load(object sender, EventArgs e)
         {
-            list_status.Items.Add("En cours");
-            list_status.Items.Add("Terminée");
             dt = M_Commande.getCommand();
             try
             {
                 tableauCommande.DataSource = dt;
-                tableauCommande.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-                tableauCommande.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-                tableauCommande.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-                tableauCommande.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-                tableauCommande.Columns[4].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                // Changement des noms des colonnes
+                tableauCommande.Columns[0].HeaderText = "Numéro de commande";
+                tableauCommande.Columns[1].HeaderText = "Libellé d'utilisateur";
+                tableauCommande.Columns[2].HeaderText = "Date";
+                tableauCommande.Columns[3].HeaderText = "Status";
+                tableauCommande.Columns[4].HeaderText = "Montant";
             }
             catch(Exception ex)
             {
@@ -41,26 +40,43 @@ namespace MusicHall.Vues
 
         }
 
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void b_validerModification_Click(object sender, EventArgs e)
         {
             String textId = t_idCommande.Text;
             int idCommande = int.Parse(textId);
-            M_Commande.modifierStatus(idCommande, list_status.Text);
+            M_Commande.modifierStatus(idCommande, "Terminée");
         }
 
-        private void tableauCommande_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void b_quitter_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void splitContainer1_Panel1_Paint(object sender, PaintEventArgs e)
         {
 
         }
 
-        private void list_status_SelectedIndexChanged(object sender, EventArgs e)
+        private void tableauCommande_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            
+            DataGridView tableauCommande = sender as DataGridView;
+            int rowIndex = e.RowIndex;
+
+            if (tableauCommande == null)
+            {
+                return;
+            }
+            if (tableauCommande.CurrentRow.Selected)
+            {
+                try
+                {
+                    t_idCommande.Text = tableauCommande.Rows[rowIndex].Cells[0].Value.ToString();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Erreur: " + ex.Message);
+                }
+            }
         }
     }
 }

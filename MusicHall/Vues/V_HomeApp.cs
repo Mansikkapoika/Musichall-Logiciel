@@ -16,6 +16,14 @@ namespace MusicHall
         public HomeApp()
         {
             InitializeComponent();
+            // Definition de la couleur des MDI containers (propriété Backcolor du MDI buguée)
+            foreach (Control ctl in this.Controls)
+            {
+                if (ctl.GetType() == typeof(MdiClient))
+                {
+                    ctl.BackColor = SystemColors.ActiveCaption;
+                }
+            }
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -54,6 +62,22 @@ namespace MusicHall
         {
             V_GestionCom fenetre;
             fenetre = new V_GestionCom();
+            fenetre.MdiParent = this;
+            fenetre.Show();
+        }
+
+        private void locationsEnCoursToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            V_ListeMat fenetre;
+            fenetre = new V_ListeMat();
+            fenetre.MdiParent = this;
+            fenetre.Show();
+        }
+
+        private void commandesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            V_ListeCom fenetre;
+            fenetre = new V_ListeCom();
             fenetre.MdiParent = this;
             fenetre.Show();
         }

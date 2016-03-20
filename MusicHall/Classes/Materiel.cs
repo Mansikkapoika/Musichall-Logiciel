@@ -12,23 +12,23 @@ namespace MusicHall.Classes
         private String libelle;
         private String description;
         private decimal prixAchHT;
-        private decimal prixLoca;
         private int idSousCategorie;
         private String Marque;
         private String Modele;
         private String Fournisseur;
+        private String cheminImage;
 
-        public Materiel(int idMateriel, String libelle, String description, decimal prixAchHT, decimal prixLoca, int idSousCategorie, String Marque, String Modele, String Fournisseur)
+        public Materiel(int idMateriel, String libelle, String description, decimal prixAchHT, int idSousCategorie, String Marque, String Modele, String Fournisseur, String cheminImage)
         {
             this.idMateriel = idMateriel;
             this.libelle = libelle;
             this.description = description;
             this.prixAchHT = prixAchHT;
-            this.prixLoca = prixLoca;
             this.idSousCategorie = idSousCategorie;
             this.Marque = Marque;
             this.Modele = Modele;
             this.Fournisseur = Fournisseur;
+            this.cheminImage = cheminImage;
         }
 
         // Accesseurs
@@ -53,11 +53,6 @@ namespace MusicHall.Classes
             return this.prixAchHT;
         }
 
-        public decimal getPrixLoca()
-        {
-            return this.prixLoca;
-        }
-
         public String getMarque()
         {
             return this.Marque;
@@ -78,5 +73,9 @@ namespace MusicHall.Classes
             return this.idSousCategorie;
         }
 
+        public String getCheminImage()
+        {
+            return this.cheminImage;
+        }
     }
 }

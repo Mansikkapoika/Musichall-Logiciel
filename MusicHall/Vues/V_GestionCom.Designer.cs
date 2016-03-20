@@ -29,10 +29,9 @@
         private void InitializeComponent()
         {
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.b_quitter = new System.Windows.Forms.Button();
             this.b_validerModification = new System.Windows.Forms.Button();
             this.t_idCommande = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.list_status = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.tableauCommande = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -51,11 +50,11 @@
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this.b_quitter);
             this.splitContainer1.Panel1.Controls.Add(this.b_validerModification);
             this.splitContainer1.Panel1.Controls.Add(this.t_idCommande);
-            this.splitContainer1.Panel1.Controls.Add(this.label1);
-            this.splitContainer1.Panel1.Controls.Add(this.list_status);
             this.splitContainer1.Panel1.Controls.Add(this.label2);
+            this.splitContainer1.Panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.splitContainer1_Panel1_Paint);
             // 
             // splitContainer1.Panel2
             // 
@@ -64,46 +63,37 @@
             this.splitContainer1.SplitterDistance = 240;
             this.splitContainer1.TabIndex = 0;
             // 
+            // b_quitter
+            // 
+            this.b_quitter.Location = new System.Drawing.Point(128, 91);
+            this.b_quitter.Name = "b_quitter";
+            this.b_quitter.Size = new System.Drawing.Size(97, 46);
+            this.b_quitter.TabIndex = 38;
+            this.b_quitter.Text = "Quitter";
+            this.b_quitter.UseVisualStyleBackColor = true;
+            this.b_quitter.Click += new System.EventHandler(this.b_quitter_Click);
+            // 
             // b_validerModification
             // 
-            this.b_validerModification.Location = new System.Drawing.Point(28, 205);
+            this.b_validerModification.Location = new System.Drawing.Point(25, 91);
             this.b_validerModification.Name = "b_validerModification";
             this.b_validerModification.Size = new System.Drawing.Size(97, 46);
             this.b_validerModification.TabIndex = 37;
-            this.b_validerModification.Text = "Valider modification";
+            this.b_validerModification.Text = "Terminer la commande";
             this.b_validerModification.UseVisualStyleBackColor = true;
             this.b_validerModification.Click += new System.EventHandler(this.b_validerModification_Click);
             // 
             // t_idCommande
             // 
-            this.t_idCommande.Location = new System.Drawing.Point(29, 55);
+            this.t_idCommande.Location = new System.Drawing.Point(25, 56);
             this.t_idCommande.Name = "t_idCommande";
             this.t_idCommande.Size = new System.Drawing.Size(96, 20);
             this.t_idCommande.TabIndex = 36;
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(26, 110);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(118, 13);
-            this.label1.TabIndex = 35;
-            this.label1.Text = "Status de la commande";
-            // 
-            // list_status
-            // 
-            this.list_status.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.list_status.FormattingEnabled = true;
-            this.list_status.Location = new System.Drawing.Point(29, 143);
-            this.list_status.Name = "list_status";
-            this.list_status.Size = new System.Drawing.Size(125, 21);
-            this.list_status.TabIndex = 34;
-            this.list_status.SelectedIndexChanged += new System.EventHandler(this.list_status_SelectedIndexChanged);
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(26, 22);
+            this.label2.Location = new System.Drawing.Point(22, 22);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(145, 13);
             this.label2.TabIndex = 33;
@@ -112,16 +102,16 @@
             // tableauCommande
             // 
             this.tableauCommande.AllowUserToAddRows = false;
-            this.tableauCommande.AllowUserToDeleteRows = false;
+            this.tableauCommande.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.tableauCommande.BackgroundColor = System.Drawing.SystemColors.ActiveCaption;
             this.tableauCommande.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.tableauCommande.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableauCommande.Location = new System.Drawing.Point(0, 0);
             this.tableauCommande.Name = "tableauCommande";
             this.tableauCommande.ReadOnly = true;
-            this.tableauCommande.RowHeadersVisible = false;
             this.tableauCommande.Size = new System.Drawing.Size(602, 602);
-            this.tableauCommande.TabIndex = 0;
-            this.tableauCommande.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.tableauCommande_CellContentClick);
+            this.tableauCommande.TabIndex = 1;
+            this.tableauCommande.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.tableauCommande_CellClick);
             // 
             // V_GestionCom
             // 
@@ -147,10 +137,9 @@
 
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.TextBox t_idCommande;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox list_status;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button b_validerModification;
         private System.Windows.Forms.DataGridView tableauCommande;
+        private System.Windows.Forms.Button b_quitter;
     }
 }

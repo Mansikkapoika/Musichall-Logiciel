@@ -47,6 +47,7 @@ namespace MusicHall.Modeles
             catch (Exception ex)
             {
                 MessageBox.Show("Erreur :" + ex.Message);
+                M_Connexion.Gestion.Close();
             }
 
             return CollectionCategorie;
@@ -86,6 +87,7 @@ namespace MusicHall.Modeles
             catch (Exception ex)
             {
                 MessageBox.Show("Erreur :" + ex.Message);
+                M_Connexion.Gestion.Close();
             }
             return CollectionSousCategorie;
         }

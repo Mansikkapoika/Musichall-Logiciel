@@ -11,6 +11,9 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using MusicHall.Classes;
 using MusicHall.Modeles;
+using System.Net;
+using System.IO;
+using System.Drawing.Imaging;
 
 namespace MusicHall
 {
@@ -20,13 +23,15 @@ namespace MusicHall
         Collection<Categories> CollectionCategorie;
         Collection<SousCategories> CollectionSousCategories;
         int idMaterielCourant;
+        OpenFileDialog open;
+        String fichierSansExt;
+
 
         private void RemiseAZero()
         {
             // Vidage des champs de saisie
             t_nom.Clear();
             t_ht.Value = 0;
-            t_location.Value = 0;
             t_description.Clear();
             t_marque.Clear();
             t_modele.Clear();
@@ -38,7 +43,6 @@ namespace MusicHall
             // On bloque tous les champs de saisie
             t_nom.Enabled = false;
             t_ht.Enabled = false;
-            t_location.Enabled = false;
             t_description.Enabled = false;
             t_marque.Enabled = false;
             t_modele.Enabled = false;
@@ -48,6 +52,7 @@ namespace MusicHall
             b_annuler.Enabled = false;
             list_categories.Enabled = false;
             list_souscategories.Enabled = false;
+            b_ajoutPhoto.Enabled = false;
             // On empeche l'utilisateur d'écrire dans les combobox
             list_materiels.DropDownStyle = ComboBoxStyle.DropDownList;
             list_categories.DropDownStyle = ComboBoxStyle.DropDownList;
@@ -59,13 +64,13 @@ namespace MusicHall
             // On débloque tous les champs de saisie
             t_nom.Enabled = true;
             t_ht.Enabled = true;
-            t_location.Enabled = true;
             t_description.Enabled = true;
             t_marque.Enabled = true;
             t_modele.Enabled = true;
             t_fournisseur.Enabled = true;
             list_categories.Enabled = true;
             list_souscategories.Enabled = true;
+            b_ajoutPhoto.Enabled = true;
         }
 
         public GestionMat()
@@ -91,6 +96,7 @@ namespace MusicHall
             b_modifierMateriel.Enabled = false;
             b_supprimerMateriel.Enabled = false;
             b_validerAjout.Enabled = true;
+            b_ajoutPhoto.Enabled = true;
             b_annuler.Enabled = true;
 
             DebloquerChampsSaisie();
@@ -110,6 +116,7 @@ namespace MusicHall
             b_ajouterMateriel.Enabled = false;
             b_modifierMateriel.Enabled = false;
             b_supprimerMateriel.Enabled = false;
+            b_ajoutPhoto.Enabled = false;
             b_annuler.Enabled = true;
         }
 
@@ -170,7 +177,6 @@ namespace MusicHall
             idMaterielCourant = leMateriel.getId();
             t_nom.Text = leMateriel.getLibelle();
             t_ht.Value = leMateriel.getPrixAch();
-            t_location.Value = leMateriel.getPrixLoca();
             t_description.Text = leMateriel.getDescription();
             t_marque.Text = leMateriel.getMarque();
             t_modele.Text = leMateriel.getModele();
@@ -196,6 +202,7 @@ namespace MusicHall
         {
             BloquerChampsSaisie();
             RemiseAZero();
+            pic_materiel.Image = null;
             list_materiels.Enabled = true;
             b_ajouterMateriel.Enabled = true;
             b_modifierMateriel.Enabled = true;
@@ -276,13 +283,18 @@ namespace MusicHall
         {
             try
             {
+                string filename = open.FileName;
+                FileInfo objFile = new FileInfo(filename);
+
                 // On créé un objet de matériel qui sera utilisé pour l'ajout de celui-ci dans la BDD
                 Materiel unMateriel = null;
                 int idMateriel = 1;
-                unMateriel = new Materiel(idMateriel, t_nom.Text, t_description.Text, t_ht.Value, t_location.Value, CollectionSousCategories[list_souscategories.SelectedIndex].getCode(), t_marque.Text, t_modele.Text, t_fournisseur.Text);
+                unMateriel = new Materiel(idMateriel, t_nom.Text, t_description.Text, t_ht.Value, CollectionSousCategories[list_souscategories.SelectedIndex].getCode(), t_marque.Text, t_modele.Text, t_fournisseur.Text, "content/images/products/" + fichierSansExt);
 
                 // On ajoute le matériel
                 M_Materiel.ajouterMateriel(unMateriel);
+                // On ajout la photo
+                ajouterPhoto(open);
             }
             catch (Exception ex)
             {
@@ -306,7 +318,7 @@ namespace MusicHall
             try
             {
                 Materiel unMateriel = null;
-                unMateriel = new Materiel(idMaterielCourant, t_nom.Text, t_description.Text, t_ht.Value, t_location.Value, CollectionSousCategories[list_souscategories.SelectedIndex].getCode(), t_marque.Text, t_modele.Text, t_fournisseur.Text);
+                unMateriel = new Materiel(idMaterielCourant, t_nom.Text, t_description.Text, t_ht.Value, CollectionSousCategories[list_souscategories.SelectedIndex].getCode(), t_marque.Text, t_modele.Text, t_fournisseur.Text, "");
                 M_Materiel.modifierMateriel(unMateriel);
             }
             catch (Exception ex)
@@ -315,5 +327,108 @@ namespace MusicHall
             }
 
         }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            // open file dialog 
+            OpenFileDialog open = new OpenFileDialog();
+            // image filters
+            open.Filter = "Image Files(*.jpg; *.jpeg; *.gif; *.bmp)|*.jpg; *.jpeg; *.gif; *.bmp";
+            if (open.ShowDialog() == DialogResult.OK)
+            {
+                // image file path
+                if (open.CheckFileExists)
+                {
+                    if (MessageBox.Show("Enregistrer cette image ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    {
+                        // ligne pour récupérer seulement le nom de l'image et non le chemin
+                        FileInfo objFile = new FileInfo(open.FileName);
+                        // display image in picture box
+                        pic_materiel.Image = new Bitmap(open.FileName);
+                        // on garde l'objet
+                        this.open = open;
+
+                        try
+                        {
+                            // redimention de l'image, copie sur le pc local et attente de l'envoi sur le FTP
+                            Image old = Image.FromFile(open.FileName); // ouverture
+                            Bitmap img = new Bitmap(old, 500, 708); // redimension
+
+                            // on récupère le nom du fichier sans l'extension
+                            String fichierSansExt = System.IO.Path.GetFileNameWithoutExtension(objFile.Name);
+                            img.Save(System.Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + fichierSansExt + ".png", ImageFormat.Png); // sauvegarde
+                            MessageBox.Show("Image redimensionnée pour le site.");
+                            this.fichierSansExt = fichierSansExt + ".png";
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("Erreur lors de la redimention: " + ex.Message);
+                        }
+                    }
+                }
+            }
+        }
+
+        private void ajouterPhoto(OpenFileDialog open)
+        {
+            // infos fichier local non redimensionné
+            FileInfo objFileNRD = new FileInfo(open.FileName);
+            String fichierSansExt = System.IO.Path.GetFileNameWithoutExtension(objFileNRD.Name);
+
+            string filename = System.Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + fichierSansExt + ".png";
+            string ftpServerIP = "btsinfo-rousseau53.fr:21017";
+            string ftpUserName = "2014-musichall";
+            string ftpPassword = "123456";
+
+            FtpWebRequest objFTPRequest;
+
+            FileInfo objFile = new FileInfo(filename);
+
+            // Create FtpWebRequest object 
+            objFTPRequest = (FtpWebRequest)FtpWebRequest.Create(new Uri("ftp://" + ftpServerIP + "/content/images/products/" + objFile.Name));
+
+            // Set Credintials
+            objFTPRequest.Credentials = new NetworkCredential(ftpUserName, ftpPassword);
+
+            // By default KeepAlive is true, where the control connection is 
+            // not closed after a command is executed.
+            objFTPRequest.KeepAlive = false;
+
+            // Set the data transfer type.
+            objFTPRequest.UseBinary = true;
+
+            // Set content length
+            objFTPRequest.ContentLength = objFile.Length;
+
+            // Set request method
+            objFTPRequest.Method = WebRequestMethods.Ftp.UploadFile;
+
+            // Set buffer size
+            int intBufferLength = 16 * 1024;
+            byte[] objBuffer = new byte[intBufferLength];
+
+            // Opens a file to read
+            FileStream objFileStream = objFile.OpenRead();
+
+            try
+            {
+                // Get Stream of the file
+                Stream objStream = objFTPRequest.GetRequestStream();
+                int len = 0;
+                while ((len = objFileStream.Read(objBuffer, 0, intBufferLength)) != 0)
+                {
+                    // Write file Content 
+                    objStream.Write(objBuffer, 0, len);
+                }
+                objStream.Close();
+                objFileStream.Close();
+                MessageBox.Show("Photo enregistrée avec succès.");
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Erreur:" + ex.Message);
+            }
+        }
+
     }
 }
