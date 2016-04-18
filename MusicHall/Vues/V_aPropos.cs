@@ -15,11 +15,11 @@ namespace MusicHall
         {
             InitializeComponent();
             this.Text = String.Format("À propos de {0}", AssemblyTitle);
-            this.labelProductName.Text = AssemblyProduct;
-            this.labelVersion.Text = String.Format("Version {0}", AssemblyVersion);
-            this.labelCopyright.Text = AssemblyCopyright;
-            this.labelCompanyName.Text = AssemblyCompany;
-            this.textBoxDescription.Text = AssemblyDescription;
+            this.labelProductName.Text = "Gestionnaire";
+            this.labelVersion.Text = "Version 1.0.0";
+            this.labelCopyright.Text = "Copyright Musichall 2015";
+            this.labelCompanyName.Text = "Musichall";
+            this.textBoxDescription.Text = "Gestionnaire de l'entreprise Musichall";
         }
 
         #region Accesseurs d'attribut de l'assembly

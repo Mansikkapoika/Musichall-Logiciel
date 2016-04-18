@@ -22,10 +22,9 @@ namespace MusicHall.Vues
 
         private void V_GestionCom_Load(object sender, EventArgs e)
         {
-            dt = M_Commande.getCommand();
             try
             {
-                tableauCommande.DataSource = dt;
+                remplirTableau();
                 // Changement des noms des colonnes
                 tableauCommande.Columns[0].HeaderText = "Numéro de commande";
                 tableauCommande.Columns[1].HeaderText = "Libellé d'utilisateur";
@@ -52,11 +51,6 @@ namespace MusicHall.Vues
             Close();
         }
 
-        private void splitContainer1_Panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
         private void tableauCommande_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             DataGridView tableauCommande = sender as DataGridView;
@@ -77,6 +71,17 @@ namespace MusicHall.Vues
                     MessageBox.Show("Erreur: " + ex.Message);
                 }
             }
+        }
+
+        public void remplirTableau()
+        {
+            dt = M_Commande.getCommand();
+            tableauCommande.DataSource = dt;
+        }
+
+        private void b_refresh_Click(object sender, EventArgs e)
+        {
+            remplirTableau();
         }
     }
 }

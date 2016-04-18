@@ -63,7 +63,7 @@ namespace MusicHall.Modeles
                 // Ouverture de la connexion
                 M_Connexion.Gestion.Open();
                 // Requête SQL
-                String ReqSQL = "SELECT * FROM Materiel";
+                String ReqSQL = "SELECT * FROM materiel";
 
                 MySqlDataAdapter da = new MySqlDataAdapter(ReqSQL, M_Connexion.Gestion);
                 MySqlCommandBuilder cb = new MySqlCommandBuilder(da);
@@ -207,5 +207,36 @@ namespace MusicHall.Modeles
             }
         }
 
+        static public DataTable getMaterielDataAdapter(String type, String filtre)
+        {
+            DataSet ds = new DataSet();
+            DataTable dt = new DataTable();
+
+            try
+            {
+                // Ouverture de la connexion
+                M_Connexion.Gestion.Open();
+                // Requête SQL
+                String ReqSQL = "SELECT * FROM materiel WHERE " + type + " LIKE ?";
+
+                MySqlDataAdapter da = new MySqlDataAdapter(ReqSQL, M_Connexion.Gestion);
+                MySqlCommandBuilder cb = new MySqlCommandBuilder(da);
+
+                da.SelectCommand.Parameters.AddWithValue("@param", "%" + filtre + "%");
+
+                da.Fill(ds, "materiel");
+                dt = ds.Tables[0];
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erreur :" + ex.Message);
+            }
+            finally
+            {
+                // Fermeture de la connexion
+                M_Connexion.Gestion.Close();
+            }
+            return dt;
+        }
     }
 }

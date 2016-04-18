@@ -34,6 +34,7 @@
             this.t_idCommande = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.tableauCommande = new System.Windows.Forms.DataGridView();
+            this.b_refresh = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -50,11 +51,11 @@
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this.b_refresh);
             this.splitContainer1.Panel1.Controls.Add(this.b_quitter);
             this.splitContainer1.Panel1.Controls.Add(this.b_validerModification);
             this.splitContainer1.Panel1.Controls.Add(this.t_idCommande);
             this.splitContainer1.Panel1.Controls.Add(this.label2);
-            this.splitContainer1.Panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.splitContainer1_Panel1_Paint);
             // 
             // splitContainer1.Panel2
             // 
@@ -113,6 +114,16 @@
             this.tableauCommande.TabIndex = 1;
             this.tableauCommande.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.tableauCommande_CellClick);
             // 
+            // b_refresh
+            // 
+            this.b_refresh.Location = new System.Drawing.Point(24, 143);
+            this.b_refresh.Name = "b_refresh";
+            this.b_refresh.Size = new System.Drawing.Size(97, 46);
+            this.b_refresh.TabIndex = 39;
+            this.b_refresh.Text = "Actualiser";
+            this.b_refresh.UseVisualStyleBackColor = true;
+            this.b_refresh.Click += new System.EventHandler(this.b_refresh_Click);
+            // 
             // V_GestionCom
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -121,7 +132,6 @@
             this.Controls.Add(this.splitContainer1);
             this.Name = "V_GestionCom";
             this.Text = "V_GestionCom";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.V_GestionCom_Load);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel1.PerformLayout();
@@ -141,5 +151,6 @@
         private System.Windows.Forms.Button b_validerModification;
         private System.Windows.Forms.DataGridView tableauCommande;
         private System.Windows.Forms.Button b_quitter;
+        private System.Windows.Forms.Button b_refresh;
     }
 }

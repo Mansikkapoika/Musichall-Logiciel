@@ -376,7 +376,7 @@ namespace MusicHall
             String fichierSansExt = System.IO.Path.GetFileNameWithoutExtension(objFileNRD.Name);
 
             string filename = System.Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + fichierSansExt + ".png";
-            string ftpServerIP = "btsinfo-rousseau53.fr:21017";
+            string ftpServerIP = "192.168.1.17"; //string ftpServerIP = "btsinfo-rousseau53.fr:21017";
             string ftpUserName = "2014-musichall";
             string ftpPassword = "123456";
 
