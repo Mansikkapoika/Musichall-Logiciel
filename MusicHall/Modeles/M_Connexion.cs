@@ -11,7 +11,7 @@ namespace MusicHall.Modeles
         // Chaine de connexion à la DB
 
         //static public String ChaineConnexion = "server=btsinfo-rousseau53.fr;port=33017;username=2014-musichall;password=123456;database=2014-musichall_musichall";
-        static public String ChaineConnexion = "server=localhost;port=3306;username=root;password=;database=musichall;";
+        static public String ChaineConnexion = "server=localhost;port=3306;username=root;password=;database=musichall1;";
 
         static public MySqlConnection Gestion = new MySqlConnection(ChaineConnexion);
     }

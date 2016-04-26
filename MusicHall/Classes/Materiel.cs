@@ -16,9 +16,10 @@ namespace MusicHall.Classes
         private String Marque;
         private String Modele;
         private String Fournisseur;
+        private int nbstock;
         private String cheminImage;
 
-        public Materiel(int idMateriel, String libelle, String description, decimal prixAchHT, int idSousCategorie, String Marque, String Modele, String Fournisseur, String cheminImage)
+        public Materiel(int idMateriel, String libelle, String description, decimal prixAchHT, int idSousCategorie, String Marque, String Modele, String Fournisseur, int nbstock, String cheminImage)
         {
             this.idMateriel = idMateriel;
             this.libelle = libelle;
@@ -28,6 +29,7 @@ namespace MusicHall.Classes
             this.Marque = Marque;
             this.Modele = Modele;
             this.Fournisseur = Fournisseur;
+            this.nbstock = nbstock;
             this.cheminImage = cheminImage;
         }
 
@@ -71,6 +73,11 @@ namespace MusicHall.Classes
         public int getIdSousCategorie()
         {
             return this.idSousCategorie;
+        }
+
+        public int getNbStock()
+        {
+            return this.nbstock;
         }
 
         public String getCheminImage()

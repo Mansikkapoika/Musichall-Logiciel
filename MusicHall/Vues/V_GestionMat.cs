@@ -289,7 +289,7 @@ namespace MusicHall
                 // On créé un objet de matériel qui sera utilisé pour l'ajout de celui-ci dans la BDD
                 Materiel unMateriel = null;
                 int idMateriel = 1;
-                unMateriel = new Materiel(idMateriel, t_nom.Text, t_description.Text, t_ht.Value, CollectionSousCategories[list_souscategories.SelectedIndex].getCode(), t_marque.Text, t_modele.Text, t_fournisseur.Text, "content/images/products/" + fichierSansExt);
+                unMateriel = new Materiel(idMateriel, t_nom.Text, t_description.Text, t_ht.Value, CollectionSousCategories[list_souscategories.SelectedIndex].getCode(), t_marque.Text, t_modele.Text, t_fournisseur.Text, 0, "content/images/products/" + fichierSansExt);
 
                 // On ajoute le matériel
                 M_Materiel.ajouterMateriel(unMateriel);
@@ -318,7 +318,7 @@ namespace MusicHall
             try
             {
                 Materiel unMateriel = null;
-                unMateriel = new Materiel(idMaterielCourant, t_nom.Text, t_description.Text, t_ht.Value, CollectionSousCategories[list_souscategories.SelectedIndex].getCode(), t_marque.Text, t_modele.Text, t_fournisseur.Text, "");
+                unMateriel = new Materiel(idMaterielCourant, t_nom.Text, t_description.Text, t_ht.Value, CollectionSousCategories[list_souscategories.SelectedIndex].getCode(), t_marque.Text, t_modele.Text, t_fournisseur.Text, 0, "");
                 M_Materiel.modifierMateriel(unMateriel);
             }
             catch (Exception ex)
@@ -336,7 +336,6 @@ namespace MusicHall
             open.Filter = "Image Files(*.jpg; *.jpeg; *.gif; *.bmp)|*.jpg; *.jpeg; *.gif; *.bmp";
             if (open.ShowDialog() == DialogResult.OK)
             {
-                // image file path
                 if (open.CheckFileExists)
                 {
                     if (MessageBox.Show("Enregistrer cette image ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
@@ -345,7 +344,7 @@ namespace MusicHall
                         FileInfo objFile = new FileInfo(open.FileName);
                         // display image in picture box
                         pic_materiel.Image = new Bitmap(open.FileName);
-                        // on garde l'objet
+                        // je garde l'objet
                         this.open = open;
 
                         try

@@ -37,7 +37,7 @@ namespace MusicHall.Modeles
 
                 while (MonReaderMateriel.Read())
                 {
-                    nouveauMateriel = new Materiel(int.Parse(MonReaderMateriel[0].ToString()), MonReaderMateriel[1].ToString(), MonReaderMateriel[2].ToString(), decimal.Parse(MonReaderMateriel[3].ToString()), int.Parse(MonReaderMateriel[4].ToString()), MonReaderMateriel[5].ToString(), MonReaderMateriel[6].ToString(), MonReaderMateriel[7].ToString(), MonReaderMateriel[8].ToString());
+                    nouveauMateriel = new Materiel(int.Parse(MonReaderMateriel[0].ToString()), MonReaderMateriel[1].ToString(), MonReaderMateriel[2].ToString(), decimal.Parse(MonReaderMateriel[3].ToString()), int.Parse(MonReaderMateriel[4].ToString()), MonReaderMateriel[5].ToString(), MonReaderMateriel[6].ToString(), MonReaderMateriel[7].ToString(), int.Parse(MonReaderMateriel[8].ToString()), MonReaderMateriel[9].ToString());
                     CollectionMateriel.Add(nouveauMateriel);
                 }
                 // Fermeture de la connexion
@@ -90,7 +90,7 @@ namespace MusicHall.Modeles
                 M_Connexion.Gestion.Open();
 
                 // Requête SQL
-                string reqSQL = "INSERT INTO materiel VALUES (NULL,?,?,?,?,?,?,?,?)";
+                string reqSQL = "INSERT INTO materiel VALUES (NULL,?,?,?,?,?,?,?,?,?)";
 
                 // Execution de la requête
                 MySqlCommand Command1 = new MySqlCommand(reqSQL, M_Connexion.Gestion);
@@ -104,7 +104,8 @@ namespace MusicHall.Modeles
                 MySqlParameter Param7 = Command1.Parameters.Add("@Marque", MySqlDbType.VarChar);
                 MySqlParameter Param8 = Command1.Parameters.Add("@Modele", MySqlDbType.VarChar);
                 MySqlParameter Param9 = Command1.Parameters.Add("@Fournisseur", MySqlDbType.VarChar);
-                MySqlParameter Param10 = Command1.Parameters.Add("@cheminImage", MySqlDbType.VarChar);
+                MySqlParameter Param10 = Command1.Parameters.Add("@nbstock", MySqlDbType.Int16);
+                MySqlParameter Param11 = Command1.Parameters.Add("@cheminImage", MySqlDbType.VarChar);
 
                 // Affectation des valeurs
                 // On abandonne le faux paramètre 1 car l'ID est auto-incrémenté
@@ -115,7 +116,8 @@ namespace MusicHall.Modeles
                 Param7.Value = unMateriel.getMarque();
                 Param8.Value = unMateriel.getModele();
                 Param9.Value = unMateriel.getFournisseur();
-                Param10.Value = unMateriel.getCheminImage();
+                Param10.Value = unMateriel.getNbStock();
+                Param11.Value = unMateriel.getCheminImage();
 
                 Command1.ExecuteNonQuery();
                 M_Connexion.Gestion.Close();
@@ -152,7 +154,6 @@ namespace MusicHall.Modeles
                 MySqlParameter Param7 = Command1.Parameters.Add("@Modele", MySqlDbType.VarChar);
                 MySqlParameter Param8 = Command1.Parameters.Add("@Fournisseur", MySqlDbType.VarChar);
                 MySqlParameter Param9 = Command1.Parameters.Add("@idMateriel", MySqlDbType.Int16);
-
 
                 // Affectation des valeurs
                 // Le param1 est auto-incrémenté
