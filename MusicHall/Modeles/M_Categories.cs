@@ -8,6 +8,7 @@ using MusicHall.Modeles;
 using System.Collections.ObjectModel;
 using MySql.Data.MySqlClient;
 using System.Windows.Forms;
+using System.Data;
 
 namespace MusicHall.Modeles
 {
@@ -92,5 +93,31 @@ namespace MusicHall.Modeles
             return CollectionSousCategorie;
         }
 
+        public static DataTable getCategoriesTab()
+        {
+            DataSet ds = new DataSet();
+            DataTable dt = new DataTable();
+
+            try
+            {
+                // Ouverture de la connexion
+                M_Connexion.Gestion.Open();
+                // Requête SQL
+                String ReqSQL = "SELECT * FROM categorie";
+
+                MySqlDataAdapter da = new MySqlDataAdapter(ReqSQL, M_Connexion.Gestion);
+                MySqlCommandBuilder cb = new MySqlCommandBuilder(da);
+
+                da.Fill(ds, "categorie");
+                dt = ds.Tables[0];
+                // Fermeture de la connexion
+                M_Connexion.Gestion.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erreur :" + ex.Message);
+            }
+            return dt;
+        }
     }
 }

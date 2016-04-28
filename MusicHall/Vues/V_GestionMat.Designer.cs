@@ -357,7 +357,6 @@
             this.Controls.Add(this.label1);
             this.Name = "GestionMat";
             this.Text = "Gestion matériel";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.GestionMat_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pic_materiel)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.t_ht)).EndInit();

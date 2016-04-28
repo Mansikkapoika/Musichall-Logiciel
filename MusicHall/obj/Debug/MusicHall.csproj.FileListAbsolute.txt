@@ -63,3 +63,4 @@ C:\Users\Rodaxfck\Source\Repos\musiquedesesmorts-\MusicHall\obj\Debug\MusicHall.
 C:\Users\Rodaxfck\Source\Repos\musiquedesesmorts-\MusicHall\obj\Debug\MusicHall.csproj.GenerateResource.Cache
 C:\Users\Rodaxfck\Source\Repos\musiquedesesmorts-\MusicHall\obj\Debug\MusicHall.Vues.V_ListeCom.resources
 C:\Users\Rodaxfck\Source\Repos\musiquedesesmorts-\MusicHall\obj\Debug\MusicHall.Vues.V_ListeMat.resources
+C:\Users\Rodaxfck\Source\Repos\musiquedesesmorts-\MusicHall\obj\Debug\MusicHall.Vues.V_GestionStock.resources

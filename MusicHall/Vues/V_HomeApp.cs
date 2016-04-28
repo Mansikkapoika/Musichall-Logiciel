@@ -81,5 +81,13 @@ namespace MusicHall
             fenetre.MdiParent = this;
             fenetre.Show();
         }
+
+        private void gestionDesStocksToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            V_GestionStock fenetre;
+            fenetre = new V_GestionStock();
+            fenetre.MdiParent = this;
+            fenetre.Show();
+        }
     }
 }

@@ -54,7 +54,6 @@ namespace MusicHall.Modeles
 
         public static DataTable getMaterielDt()
         {
-
             DataSet ds = new DataSet();
             DataTable dt = new DataTable();
 
@@ -64,6 +63,34 @@ namespace MusicHall.Modeles
                 M_Connexion.Gestion.Open();
                 // Requête SQL
                 String ReqSQL = "SELECT * FROM materiel";
+
+                MySqlDataAdapter da = new MySqlDataAdapter(ReqSQL, M_Connexion.Gestion);
+                MySqlCommandBuilder cb = new MySqlCommandBuilder(da);
+
+                da.Fill(ds, "materiel");
+                dt = ds.Tables[0];
+                // Fermeture de la connexion
+                M_Connexion.Gestion.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erreur :" + ex.Message);
+                M_Connexion.Gestion.Close();
+            }
+            return dt;
+        }
+
+        public static DataTable getFournisseursDt()
+        {
+            DataSet ds = new DataSet();
+            DataTable dt = new DataTable();
+
+            try
+            {
+                // Ouverture de la connexion
+                M_Connexion.Gestion.Open();
+                // Requête SQL
+                String ReqSQL = "SELECT DISTINCT Fournisseur FROM materiel";
 
                 MySqlDataAdapter da = new MySqlDataAdapter(ReqSQL, M_Connexion.Gestion);
                 MySqlCommandBuilder cb = new MySqlCommandBuilder(da);
@@ -238,6 +265,72 @@ namespace MusicHall.Modeles
                 M_Connexion.Gestion.Close();
             }
             return dt;
+        }
+
+        public static void augmenterQuantite(int idMateriel, int qte)
+        {
+            try
+            {
+                // Ouverture de la connexion
+                M_Connexion.Gestion.Open();
+                // Requête SQL
+                string reqSQL = "UPDATE materiel SET nbstock = nbstock + ? WHERE idMateriel = ?";
+
+                // Execution de la requête
+                MySqlCommand Command1 = new MySqlCommand(reqSQL, M_Connexion.Gestion);
+
+                // Création des paramètres correspondants aux ?
+                MySqlParameter Para1 = Command1.Parameters.Add("@nbstock", MySqlDbType.Int32);
+                MySqlParameter Para2 = Command1.Parameters.Add("@idMateriel", MySqlDbType.Int32);
+
+                // Affectation des valeurs
+                Para1.Value = qte;
+                Para2.Value = idMateriel;
+
+                Command1.ExecuteNonQuery();
+                MessageBox.Show("Entrée effectuée.");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erreur :" + ex.Message);
+            }
+            finally
+            {
+                M_Connexion.Gestion.Close();
+            }
+        }
+
+        public static void diminuerQuantite(int idMateriel, int qte)
+        {
+            try
+            {
+                // Ouverture de la connexion
+                M_Connexion.Gestion.Open();
+                // Requête SQL
+                string reqSQL = "UPDATE Materiel SET nbstock = nbstock - ? WHERE idMateriel = ?";
+
+                // Execution de la requête
+                MySqlCommand Command1 = new MySqlCommand(reqSQL, M_Connexion.Gestion);
+
+                // Création des paramètres correspondants aux ?
+                MySqlParameter Para1 = Command1.Parameters.Add("@nbstock", MySqlDbType.Int32);
+                MySqlParameter Para2 = Command1.Parameters.Add("@idMateriel", MySqlDbType.Int32);
+
+                // Affectation des valeurs
+                Para1.Value = qte;
+                Para2.Value = idMateriel;
+
+                Command1.ExecuteNonQuery();
+                MessageBox.Show("Sortie effectuée.");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erreur :" + ex.Message);
+            }
+            finally
+            {
+                M_Connexion.Gestion.Close();
+            }
         }
     }
 }

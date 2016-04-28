@@ -33,6 +33,7 @@
             this.quitterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gestionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.materielToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.gestionDesStocksToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.commandesToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.consulationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.commandesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -75,23 +76,31 @@
             // 
             this.gestionToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.materielToolStripMenuItem,
+            this.gestionDesStocksToolStripMenuItem,
             this.commandesToolStripMenuItem1});
             this.gestionToolStripMenuItem.Name = "gestionToolStripMenuItem";
-            this.gestionToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
-            this.gestionToolStripMenuItem.Text = "Gestion";
+            this.gestionToolStripMenuItem.Size = new System.Drawing.Size(222, 20);
+            this.gestionToolStripMenuItem.Text = "Gestion matériel | stocks | commandes";
             // 
             // materielToolStripMenuItem
             // 
             this.materielToolStripMenuItem.Name = "materielToolStripMenuItem";
-            this.materielToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
-            this.materielToolStripMenuItem.Text = "Matériel";
+            this.materielToolStripMenuItem.Size = new System.Drawing.Size(204, 22);
+            this.materielToolStripMenuItem.Text = "Gestion du matériel";
             this.materielToolStripMenuItem.Click += new System.EventHandler(this.materielToolStripMenuItem_Click);
+            // 
+            // gestionDesStocksToolStripMenuItem
+            // 
+            this.gestionDesStocksToolStripMenuItem.Name = "gestionDesStocksToolStripMenuItem";
+            this.gestionDesStocksToolStripMenuItem.Size = new System.Drawing.Size(204, 22);
+            this.gestionDesStocksToolStripMenuItem.Text = "Gestion des stocks";
+            this.gestionDesStocksToolStripMenuItem.Click += new System.EventHandler(this.gestionDesStocksToolStripMenuItem_Click);
             // 
             // commandesToolStripMenuItem1
             // 
             this.commandesToolStripMenuItem1.Name = "commandesToolStripMenuItem1";
-            this.commandesToolStripMenuItem1.Size = new System.Drawing.Size(142, 22);
-            this.commandesToolStripMenuItem1.Text = "Commandes";
+            this.commandesToolStripMenuItem1.Size = new System.Drawing.Size(204, 22);
+            this.commandesToolStripMenuItem1.Text = "Gestion des commandes";
             this.commandesToolStripMenuItem1.Click += new System.EventHandler(this.commandesToolStripMenuItem1_Click);
             // 
             // consulationToolStripMenuItem
@@ -155,6 +164,7 @@
         private System.Windows.Forms.ToolStripMenuItem locationsEnCoursToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem quitterToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem commandesToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem gestionDesStocksToolStripMenuItem;
     }
 }
 

@@ -44,7 +44,8 @@ namespace MusicHall.Vues
             tableauMateriel.Columns[5].HeaderText = "Marque";
             tableauMateriel.Columns[6].HeaderText = "Modèle";
             tableauMateriel.Columns[7].HeaderText = "Fournisseur";
-            tableauMateriel.Columns[8].HeaderText = "Chemin de l'image";
+            tableauMateriel.Columns[8].HeaderText = "Quantité du stock";
+            tableauMateriel.Columns[9].HeaderText = "Chemin de l'image";
         }
 
         private void b_rech_Click(object sender, EventArgs e)
